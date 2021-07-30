@@ -1,0 +1,113 @@
+/**
+ *
+ * Modules
+ *
+ */
+
+@use 'sass:math';
+@use 'sass:list';
+
+/**
+ *
+ * Functions
+ *
+ */
+
+@function track($size) {
+  $a: -0.0223;
+  $b: 0.185;
+  $c: -0.1745;
+  $d: $size / 1px;
+  $track: ($a + ($b * math.pow(math.$e, $c * $d))) * 1em;
+
+  @return $track;
+}
+
+@function offset($size, $height) {
+  $upm: 2816;
+  $cap: 2048;
+  $box: 2 * math.round((($cap / $upm) * $size) / 2);
+  $offset: ($height - $box) / 2;
+
+  @return $offset;
+}
+
+/**
+ *
+ * Mixins
+ *
+ */
+
+@mixin level($props, $modifier: '') {
+  #{& + $modifier} {
+    --height: #{list.nth($props, 2)};
+    --offset: #{offset(list.nth($props, 1), list.nth($props, 2))};
+    --size: #{list.nth($props, 1)};
+    --spacing: #{track(list.nth($props, 1))};
+  }
+}
+
+@mixin weight($weight, $modifier: '') {
+  #{& + $modifier} {
+    --weight: #{$weight};
+  }
+}
+
+@mixin trim {
+  & {
+    padding-bottom: 1px;
+    padding-top: 1px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+  }
+
+  &::before {
+    margin-top: calc((var(--offset) + 1px) * -1);
+  }
+
+  &::after {
+    margin-bottom: calc((var(--offset) + 1px) * -1);
+  }
+}
+
+@mixin clip($modifier: '') {
+  #{& + $modifier} {
+    --overflow: hidden;
+    --width: 100%;
+    --white-space: nowrap;
+    --text-overflow: ellipsis;
+    --min-width: 0;
+  }
+}
+
+@mixin base {
+  & {
+    font-family: 'Inter var', sans-serif;
+    font-feature-settings: 'calt', 'liga', 'ss03', 'zero', 'cv05', 'cv10';
+    font-kerning: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+    -webkit-text-size-adjust: none;
+  }
+}
+
+@mixin rules {
+  & {
+    font-size: var(--size);
+    font-weight: var(--weight);
+    letter-spacing: var(--spacing);
+    line-height: var(--height);
+    overflow: var(--overflow);
+    text-overflow: var(--text-overflow);
+    white-space: var(--white-space);
+    width: var(--width);
+  }
+}

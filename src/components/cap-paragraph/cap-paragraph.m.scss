@@ -1,0 +1,38 @@
+/**
+ *
+ * Variables
+ *
+ */
+
+$levels: (
+  'desktop': (
+    'primary': (
+      18px,
+      28px,
+    ),
+    'secondary': (
+      15px,
+      24px,
+    ),
+    'tertiary': (
+      12px,
+      20px,
+    ),
+  ),
+  'touch': (
+    'primary': (
+      20px,
+      30px,
+    ),
+    'secondary': (
+      17px,
+      26px,
+    ),
+    'tertiary': (
+      14px,
+      22px,
+    ),
+  ),
+);
+
+$weights: (('soft', 400), ('strong', 500), ('heavy', 600));

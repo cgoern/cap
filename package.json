@@ -1,0 +1,70 @@
+{
+  "name": "@cgoern/cap",
+  "version": "1.0.0-alpha.0",
+  "description": "Adaptive typography for the web.",
+  "license": "MIT",
+  "author": "cgoern",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cgoern/cap.git"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/custom-elements/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/custom-elements/index.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/cap/cap.esm.js",
+  "files": [
+    "dist/",
+    "loader/",
+    "www/"
+  ],
+  "dependencies": {
+    "@stencil/core": "^2.6.0"
+  },
+  "devDependencies": {
+    "@stencil/sass": "^1.4.1",
+    "@types/css-font-loading-module": "^0.0.6",
+    "prettier": "^2.3.2",
+    "stylelint": "^13.13.1",
+    "stylelint-config-prettier": "^8.0.2",
+    "stylelint-order": "^4.1.0",
+    "stylelint-prettier": "^1.2.0"
+  },
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --dev --watch --serve",
+    "generate": "stencil generate",
+    "stylelint": "stylelint \"**/*.scss\" --fix",
+    "prettier": "prettier \"**/*.{json,ts,tsx,md,html,yml}\" --write",
+    "format": "npm run prettier && npm run stylelint"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": false,
+    "singleQuote": true,
+    "htmlWhitespaceSensitivity": "strict"
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-prettier"
+    ],
+    "plugins": [
+      "stylelint-prettier",
+      "stylelint-order"
+    ],
+    "rules": {
+      "prettier/prettier": true,
+      "order/order": [
+        "dollar-variables",
+        "custom-properties",
+        "declarations",
+        "rules",
+        "at-rules"
+      ],
+      "order/properties-alphabetical-order": true
+    }
+  }
+}

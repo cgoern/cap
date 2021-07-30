@@ -1,0 +1,62 @@
+/**
+ *
+ * Variables
+ *
+ */
+
+$levels: (
+  'desktop': (
+    'primary': (
+      34px,
+      42px,
+    ),
+    'secondary': (
+      27px,
+      34px,
+    ),
+    'tertiary': (
+      22px,
+      30px,
+    ),
+    'quaternary': (
+      18px,
+      26px,
+    ),
+    'quinary': (
+      15px,
+      22px,
+    ),
+    'senary': (
+      12px,
+      18px,
+    ),
+  ),
+  'touch': (
+    'primary': (
+      35px,
+      42px,
+    ),
+    'secondary': (
+      29px,
+      36px,
+    ),
+    'tertiary': (
+      24px,
+      32px,
+    ),
+    'quaternary': (
+      20px,
+      28px,
+    ),
+    'quinary': (
+      17px,
+      24px,
+    ),
+    'senary': (
+      14px,
+      20px,
+    ),
+  ),
+);
+
+$weights: (('soft', 400), ('strong', 500), ('heavy', 600));

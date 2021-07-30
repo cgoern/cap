@@ -1,0 +1,57 @@
+/**
+ *
+ * Modules
+ *
+ */
+
+@use 'sass:map';
+@use 'sass:list';
+@use './cap-paragraph.m' as self;
+@use './../../cap.m' as cap;
+
+/**
+ *
+ * Rules
+ *
+ */
+
+:host {
+  --height: initial;
+  --min-width: auto;
+  --offset: 0;
+  --overflow: visible;
+  --size: initial;
+  --spacing: initial;
+  --text-overflow: clip;
+  --weight: inherit;
+  --white-space: normal;
+  --width: auto;
+
+  display: block;
+  min-width: var(--min-width);
+
+  @include cap.trim();
+
+  @at-root {
+    @include cap.clip('(.clip)');
+
+    @each $weight in self.$weights {
+      @include cap.weight(list.nth($weight, 2), '(.#{list.nth($weight, 1)})');
+    }
+
+    @each $name, $props in map.get(self.$levels, 'desktop') {
+      @include cap.level($props, '(.#{$name})');
+    }
+
+    @media (pointer: coarse) {
+      @each $name, $props in map.get(self.$levels, 'touch') {
+        @include cap.level($props, '(.#{$name})');
+      }
+    }
+  }
+}
+
+#text {
+  @include cap.base;
+  @include cap.rules;
+}
