@@ -9,8 +9,12 @@ Adaptive typography for the web.
 Run `npm i @cgoern/cap` in your project directory.
 
 For non framework driven webapps and websites, include the files from the `www` output target:
+
 ```html
-<script type="module" src="node_modules/@cgoern/cap/www/build/cap.esm.js"></script>
+<script
+  type="module"
+  src="node_modules/@cgoern/cap/www/build/cap.esm.js"
+></script>
 <script nomodule src="node_modules/@cgoern/cap/www/build/cap.js"></script>
 ```
 
@@ -19,6 +23,7 @@ To integrate this library into a framework like Angular, React, etc., take a loo
 ### Available components
 
 For a full list of supported properties, take a look at the appropiate component readme:
+
 - [cap-heading](https://github.com/cgoern/cap/blob/main/src/components/cap-heading/readme.md)
 - [cap-label](https://github.com/cgoern/cap/blob/main/src/components/cap-label/readme.md)
 - [cap-paragraph](https://github.com/cgoern/cap/blob/main/src/components/cap-paragraph/readme.md)
@@ -35,5 +40,8 @@ For a full list of supported properties, take a look at the appropiate component
 
 ```html
 <!-- paragraph: Multi line body text -->
-<cap-paragraph level="primary">My paragraph</cap-paragraph>
+<cap-paragraph level="primary"
+  >Est vero saepe amet minus molestias fugiat. Quae ab blanditiis quia. Autem et
+  cupiditate exercitationem aut. Odit reiciendis cumque aut.</cap-paragraph
+>
 ```
