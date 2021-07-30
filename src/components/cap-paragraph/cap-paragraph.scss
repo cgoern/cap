@@ -31,22 +31,19 @@
   min-width: var(--min-width);
 
   @include cap.trim();
+  @include cap.clip('(.clip)');
 
-  @at-root {
-    @include cap.clip('(.clip)');
+  @each $weight in self.$weights {
+    @include cap.weight(list.nth($weight, 2), '(.#{list.nth($weight, 1)})');
+  }
 
-    @each $weight in self.$weights {
-      @include cap.weight(list.nth($weight, 2), '(.#{list.nth($weight, 1)})');
-    }
+  @each $name, $props in map.get(self.$levels, 'desktop') {
+    @include cap.level($props, '(.#{$name})');
+  }
 
-    @each $name, $props in map.get(self.$levels, 'desktop') {
+  @media (pointer: coarse) {
+    @each $name, $props in map.get(self.$levels, 'touch') {
       @include cap.level($props, '(.#{$name})');
-    }
-
-    @media (pointer: coarse) {
-      @each $name, $props in map.get(self.$levels, 'touch') {
-        @include cap.level($props, '(.#{$name})');
-      }
     }
   }
 }

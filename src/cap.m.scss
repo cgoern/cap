@@ -39,17 +39,25 @@
  */
 
 @mixin level($props, $modifier: '') {
-  #{& + $modifier} {
-    --height: #{list.nth($props, 2)};
-    --offset: #{offset(list.nth($props, 1), list.nth($props, 2))};
-    --size: #{list.nth($props, 1)};
-    --spacing: #{track(list.nth($props, 1))};
+  $selector: if($modifier != '', #{& + $modifier}, &);
+
+  @at-root {
+    #{$selector} {
+      --height: #{list.nth($props, 2)};
+      --offset: #{offset(list.nth($props, 1), list.nth($props, 2))};
+      --size: #{list.nth($props, 1)};
+      --spacing: #{track(list.nth($props, 1))};
+    }
   }
 }
 
 @mixin weight($weight, $modifier: '') {
-  #{& + $modifier} {
-    --weight: #{$weight};
+  $selector: if($modifier != '', #{& + $modifier}, &);
+
+  @at-root {
+    #{$selector} {
+      --weight: #{$weight};
+    }
   }
 }
 
@@ -76,12 +84,16 @@
 }
 
 @mixin clip($modifier: '') {
-  #{& + $modifier} {
-    --overflow: hidden;
-    --width: 100%;
-    --white-space: nowrap;
-    --text-overflow: ellipsis;
-    --min-width: 0;
+  $selector: if($modifier != '', #{& + $modifier}, &);
+
+  @at-root {
+    #{$selector} {
+      --overflow: hidden;
+      --width: 100%;
+      --white-space: nowrap;
+      --text-overflow: ellipsis;
+      --min-width: 0;
+    }
   }
 }
 
