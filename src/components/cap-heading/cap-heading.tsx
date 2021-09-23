@@ -1,5 +1,11 @@
-import { Component, Host, Prop, h } from '@stencil/core'
-import { LevelType, TagType, WeightType } from './types'
+import { Component, Host, h, Prop, Element } from '@stencil/core'
+import { LevelType, TagType } from './types'
+import { FamilyType, SizeType, WeightType } from './../../shared/types'
+import {
+  getOffset,
+  getLetterSpacing,
+  setProperties,
+} from './../../shared/properties'
 
 @Component({
   tag: 'cap-heading',
@@ -7,17 +13,19 @@ import { LevelType, TagType, WeightType } from './types'
   shadow: true,
 })
 export class CapHeading {
-  /**
-   *
-   * Properties
-   *
-   */
+  @Element() element: HTMLCapHeadingElement
 
   /** If the text should be clipped at the end of the line. */
   @Prop() clip: boolean = false
 
+  /** Defines the font family. */
+  @Prop() family: FamilyType = 'sans'
+
   /** Defines the font size. */
   @Prop() level: LevelType = 'primary'
+
+  /** Description... */
+  @Prop() size: SizeType = 'adaptive'
 
   /** The HTML heading tag. */
   @Prop() tag: TagType = 1
@@ -25,18 +33,23 @@ export class CapHeading {
   /** Defines the font weight. */
   @Prop() weight: WeightType = 'heavy'
 
-  /**
-   *
-   * Render method
-   *
-   */
+  componentDidLoad() {
+    setProperties(this.element, [
+      { name: 'offset', value: `${getOffset(this.element)}px` },
+      { name: 'letter-spacing', value: `${getLetterSpacing(this.element)}em` },
+    ])
+  }
 
   render() {
     const Tag = `h${this.tag.toString()}`
 
     return (
-      <Host class={`${this.level} ${this.weight} ${this.clip ? 'clip' : ''}`}>
-        <Tag id="text">
+      <Host
+        class={`${this.level} ${this.family} ${this.size} ${this.weight} ${
+          this.clip ? 'clip' : ''
+        }`}
+      >
+        <Tag class="text">
           <slot></slot>
         </Tag>
       </Host>

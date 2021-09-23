@@ -5,11 +5,11 @@ export const config: Config = {
   namespace: 'cap',
   plugins: [sass()],
   globalScript: 'src/global.ts',
+  globalStyle: 'src/global.scss',
   outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
-      copy: [{ src: '**/*.m.scss', dest: './sass' }],
     },
     {
       type: 'dist-custom-elements-bundle',
@@ -21,7 +21,6 @@ export const config: Config = {
     {
       type: 'www',
       serviceWorker: null,
-      copy: [{ src: '**/*.m.scss', dest: './sass' }],
     },
   ],
 }

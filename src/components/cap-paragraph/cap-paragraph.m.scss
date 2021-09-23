@@ -5,34 +5,34 @@
  */
 
 $levels: (
-  'desktop': (
-    'primary': (
+  'primary': (
+    'normal': (
       18px,
       28px,
     ),
-    'secondary': (
-      15px,
-      24px,
-    ),
-    'tertiary': (
-      12px,
-      20px,
-    ),
-  ),
-  'touch': (
-    'primary': (
+    'large': (
       20px,
       30px,
     ),
-    'secondary': (
+  ),
+  'secondary': (
+    'normal': (
+      15px,
+      24px,
+    ),
+    'large': (
       17px,
       26px,
     ),
-    'tertiary': (
+  ),
+  'tertiary': (
+    'normal': (
+      12px,
+      20px,
+    ),
+    'large': (
       14px,
       22px,
     ),
   ),
 );
-
-$weights: (('soft', 400), ('strong', 500), ('heavy', 600));

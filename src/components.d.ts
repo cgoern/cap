@@ -5,9 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { LevelType, TagType, WeightType } from "./components/cap-heading/types";
-import { LevelType as LevelType1, WeightType as WeightType1 } from "./components/cap-label/types";
-import { LevelType as LevelType2, WeightType as WeightType2 } from "./components/cap-paragraph/types";
+import { FamilyType, SizeType, WeightType } from "./shared/types";
+import { LevelType, TagType } from "./components/cap-heading/types";
+import { LevelType as LevelType1 } from "./components/cap-label/types";
+import { LevelType as LevelType2 } from "./components/cap-paragraph/types";
 export namespace Components {
     interface CapHeading {
         /**
@@ -15,9 +16,17 @@ export namespace Components {
          */
         "clip": boolean;
         /**
+          * Defines the font family.
+         */
+        "family": FamilyType;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
+        /**
+          * Description...
+         */
+        "size": SizeType;
         /**
           * The HTML heading tag.
          */
@@ -33,9 +42,17 @@ export namespace Components {
          */
         "clip": boolean;
         /**
+          * Defines the font family.
+         */
+        "family": FamilyType;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
+        /**
+          * Description...
+         */
+        "size": SizeType;
         /**
           * Defines the font weight.
          */
@@ -47,9 +64,17 @@ export namespace Components {
          */
         "clip": boolean;
         /**
+          * Defines the font family.
+         */
+        "family": FamilyType;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
+        /**
+          * Description...
+         */
+        "size": SizeType;
         /**
           * Defines the font weight.
          */
@@ -88,9 +113,17 @@ declare namespace LocalJSX {
          */
         "clip"?: boolean;
         /**
+          * Defines the font family.
+         */
+        "family"?: FamilyType;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
+        /**
+          * Description...
+         */
+        "size"?: SizeType;
         /**
           * The HTML heading tag.
          */
@@ -106,9 +139,17 @@ declare namespace LocalJSX {
          */
         "clip"?: boolean;
         /**
+          * Defines the font family.
+         */
+        "family"?: FamilyType;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
+        /**
+          * Description...
+         */
+        "size"?: SizeType;
         /**
           * Defines the font weight.
          */
@@ -120,9 +161,17 @@ declare namespace LocalJSX {
          */
         "clip"?: boolean;
         /**
+          * Defines the font family.
+         */
+        "family"?: FamilyType;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
+        /**
+          * Description...
+         */
+        "size"?: SizeType;
         /**
           * Defines the font weight.
          */
