@@ -26,6 +26,10 @@
           --cap-font-family-#{list.nth($family, 1)},
           #{string.unquote(list.nth($family, 2))}
         );
+        --font-feature-settings: var(
+          --cap-font-feature-settings-#{list.nth($family, 1)},
+          normal
+        );
         --spacing-factor: var(--cap-spacing-factor-#{list.nth($family, 1)}, 1);
         --upm: var(--cap-upm-#{list.nth($family, 1)}, 3000);
       }

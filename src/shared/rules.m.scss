@@ -15,6 +15,7 @@
   & {
     display: block;
     font-family: var(--font-family);
+    font-feature-settings: var(--font-feature-settings);
     font-kerning: normal;
     font-size: var(--font-size);
     -webkit-font-smoothing: antialiased;
