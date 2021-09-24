@@ -32,10 +32,13 @@ export function setProperties(
   element: HTMLElement,
   properties: { name: string; value: string }[]
 ) {
-  const style = element.shadowRoot.querySelector('style').sheet
+  const hasStylesheet = element.shadowRoot.styleSheets.length !== 0
+  const styleSheet = hasStylesheet
+    ? element.shadowRoot.querySelector('style').sheet
+    : // @ts-ignore
+      element.shadowRoot.adoptedStyleSheets[0]
 
-  // FIXME
   properties.map((property) => {
-    style.insertRule(`:host{--${property.name}: ${property.value}`)
+    styleSheet.insertRule(`:host{--${property.name}: ${property.value}`)
   })
 }
