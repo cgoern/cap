@@ -6,10 +6,37 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { FamilyType, SizeType, WeightType } from "./shared/types";
-import { LevelType, TagType } from "./components/cap-heading/types";
-import { LevelType as LevelType1 } from "./components/cap-label/types";
-import { LevelType as LevelType2 } from "./components/cap-paragraph/types";
+import { LevelType, TagType } from "./components/cap-display/types";
+import { LevelType as LevelType1, TagType as TagType1 } from "./components/cap-heading/types";
+import { LevelType as LevelType2 } from "./components/cap-label/types";
+import { LevelType as LevelType3 } from "./components/cap-paragraph/types";
 export namespace Components {
+    interface CapDisplay {
+        /**
+          * If the text should be clipped at the end of the line.
+         */
+        "clip": boolean;
+        /**
+          * Defines the font family.
+         */
+        "family": FamilyType;
+        /**
+          * Defines the font size.
+         */
+        "level": LevelType;
+        /**
+          * Description...
+         */
+        "size": SizeType;
+        /**
+          * The HTML heading tag.
+         */
+        "tag": TagType;
+        /**
+          * Defines the font weight.
+         */
+        "weight": WeightType;
+    }
     interface CapHeading {
         /**
           * If the text should be clipped at the end of the line.
@@ -82,6 +109,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLCapDisplayElement extends Components.CapDisplay, HTMLStencilElement {
+    }
+    var HTMLCapDisplayElement: {
+        prototype: HTMLCapDisplayElement;
+        new (): HTMLCapDisplayElement;
+    };
     interface HTMLCapHeadingElement extends Components.CapHeading, HTMLStencilElement {
     }
     var HTMLCapHeadingElement: {
@@ -101,12 +134,39 @@ declare global {
         new (): HTMLCapParagraphElement;
     };
     interface HTMLElementTagNameMap {
+        "cap-display": HTMLCapDisplayElement;
         "cap-heading": HTMLCapHeadingElement;
         "cap-label": HTMLCapLabelElement;
         "cap-paragraph": HTMLCapParagraphElement;
     }
 }
 declare namespace LocalJSX {
+    interface CapDisplay {
+        /**
+          * If the text should be clipped at the end of the line.
+         */
+        "clip"?: boolean;
+        /**
+          * Defines the font family.
+         */
+        "family"?: FamilyType;
+        /**
+          * Defines the font size.
+         */
+        "level"?: LevelType;
+        /**
+          * Description...
+         */
+        "size"?: SizeType;
+        /**
+          * The HTML heading tag.
+         */
+        "tag"?: TagType;
+        /**
+          * Defines the font weight.
+         */
+        "weight"?: WeightType;
+    }
     interface CapHeading {
         /**
           * If the text should be clipped at the end of the line.
@@ -178,6 +238,7 @@ declare namespace LocalJSX {
         "weight"?: WeightType;
     }
     interface IntrinsicElements {
+        "cap-display": CapDisplay;
         "cap-heading": CapHeading;
         "cap-label": CapLabel;
         "cap-paragraph": CapParagraph;
@@ -187,6 +248,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "cap-display": LocalJSX.CapDisplay & JSXBase.HTMLAttributes<HTMLCapDisplayElement>;
             "cap-heading": LocalJSX.CapHeading & JSXBase.HTMLAttributes<HTMLCapHeadingElement>;
             "cap-label": LocalJSX.CapLabel & JSXBase.HTMLAttributes<HTMLCapLabelElement>;
             "cap-paragraph": LocalJSX.CapParagraph & JSXBase.HTMLAttributes<HTMLCapParagraphElement>;

@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "@stencil/sass": "^1.4.1",
+    "fontkit": "^1.8.1",
     "prettier": "^2.4.1",
     "stylelint": "^13.13.1",
     "stylelint-config-prettier": "^8.0.2",

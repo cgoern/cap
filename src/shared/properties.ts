@@ -34,6 +34,7 @@ export function setProperties(
 ) {
   const style = element.shadowRoot.querySelector('style').sheet
 
+  // FIXME
   properties.map((property) => {
     style.insertRule(`:host{--${property.name}: ${property.value}`)
   })

@@ -7,17 +7,27 @@
 $levels: (
   'primary': (
     'normal': (
-      34px,
+      37px,
+      44px,
+    ),
+    'large': (
       42px,
+      48px,
+    ),
+  ),
+  'secondary': (
+    'normal': (
+      31px,
+      38px,
     ),
     'large': (
       35px,
       42px,
     ),
   ),
-  'secondary': (
+  'tertiary': (
     'normal': (
-      27px,
+      26px,
       34px,
     ),
     'large': (
@@ -25,7 +35,7 @@ $levels: (
       36px,
     ),
   ),
-  'tertiary': (
+  'quaternary': (
     'normal': (
       22px,
       30px,
@@ -35,7 +45,7 @@ $levels: (
       32px,
     ),
   ),
-  'quaternary': (
+  'quinary': (
     'normal': (
       18px,
       26px,
@@ -45,7 +55,7 @@ $levels: (
       28px,
     ),
   ),
-  'quinary': (
+  'senary': (
     'normal': (
       15px,
       22px,
@@ -53,16 +63,6 @@ $levels: (
     'large': (
       17px,
       24px,
-    ),
-  ),
-  'senary': (
-    'normal': (
-      12px,
-      18px,
-    ),
-    'large': (
-      14px,
-      20px,
     ),
   ),
 );
