@@ -1,0 +1,86 @@
+/**
+ *
+ * Rules
+ *
+ */
+
+:root {
+  --color-foreground-primary: rgba(0 0 0 / 94%);
+  --color-foreground-secondary: rgba(99 99 99 / 90%);
+  --color-separator: rgba(119 119 119 / 10%);
+  --color-surface-primary: rgb(255 255 255);
+  --color-surface-secondary: rgb(243 243 243);
+  --cap-cap-height-sans: 2048;
+  --cap-cap-height-serif: 1486;
+  --cap-cap-height-mono: 1374;
+  --cap-font-family-sans: 'Inter';
+  --cap-font-family-serif: 'Merriweather';
+  --cap-font-family-mono: 'Fira Code';
+  --cap-font-feature-settings-sans: 'calt', 'liga', 'ss03', 'zero', 'cv05',
+    'cv10';
+  --cap-font-weight-heavy: 600; // FIXME: separate weights for families
+  --cap-spacing-factor-serif: 0;
+  --cap-spacing-factor-mono: 0;
+  --cap-upm-sans: 2816;
+  --cap-upm-serif: 2000;
+  --cap-upm-mono: 1950;
+
+  @media (prefers-color-scheme: dark) {
+    --color-foreground-primary: rgba(255 255 255 / 94%);
+    --color-foreground-secondary: rgba(139 139 139 / 90%);
+    --color-separator: rgba(119 119 119 / 16%);
+    --color-surface-primary: rgb(0 0 0);
+    --color-surface-secondary: rgb(27 27 27);
+  }
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400 600;
+  src: url('./../fonts/Inter.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Merriweather';
+  font-style: normal;
+  font-weight: 400 600;
+  src: url('./../fonts/Merriweather.var.woff2') format('woff2');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Fira Code';
+  font-style: normal;
+  font-weight: 400 600;
+  src: url('./../fonts/FiraCode.var.woff2') format('woff2');
+}
+
+body {
+  background: var(--color-surface-primary);
+  color: var(--color-foreground-primary);
+  display: grid;
+  gap: 48px;
+  grid-template: auto / minmax(auto, 640px);
+  justify-content: center;
+  margin: 0;
+  padding: 32px 16px;
+}
+
+section {
+  display: grid;
+  gap: 48px;
+}
+
+header {
+  background: var(--color-surface-secondary);
+  color: var(--color-foreground-secondary);
+  padding: 8px;
+}
+
+div {
+  display: grid;
+  gap: 32px;
+}

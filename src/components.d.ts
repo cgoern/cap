@@ -21,6 +21,10 @@ export namespace Components {
          */
         "family": FamilyType;
         /**
+          * Description...
+         */
+        "leading": string;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
@@ -32,6 +36,10 @@ export namespace Components {
           * The HTML heading tag.
          */
         "tag": TagType;
+        /**
+          * Description...
+         */
+        "trailing": string;
         /**
           * Defines the font weight.
          */
@@ -47,6 +55,10 @@ export namespace Components {
          */
         "family": FamilyType;
         /**
+          * Description...
+         */
+        "leading": string;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
@@ -58,6 +70,10 @@ export namespace Components {
           * The HTML heading tag.
          */
         "tag": TagType;
+        /**
+          * Description...
+         */
+        "trailing": string;
         /**
           * Defines the font weight.
          */
@@ -73,6 +89,10 @@ export namespace Components {
          */
         "family": FamilyType;
         /**
+          * Description...
+         */
+        "leading": string;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
@@ -80,6 +100,10 @@ export namespace Components {
           * Description...
          */
         "size": SizeType;
+        /**
+          * Description...
+         */
+        "trailing": string;
         /**
           * Defines the font weight.
          */
@@ -95,6 +119,10 @@ export namespace Components {
          */
         "family": FamilyType;
         /**
+          * Description...
+         */
+        "leading": string;
+        /**
           * Defines the font size.
          */
         "level": LevelType;
@@ -102,6 +130,10 @@ export namespace Components {
           * Description...
          */
         "size": SizeType;
+        /**
+          * Description...
+         */
+        "trailing": string;
         /**
           * Defines the font weight.
          */
@@ -151,6 +183,10 @@ declare namespace LocalJSX {
          */
         "family"?: FamilyType;
         /**
+          * Description...
+         */
+        "leading"?: string;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
@@ -162,6 +198,10 @@ declare namespace LocalJSX {
           * The HTML heading tag.
          */
         "tag"?: TagType;
+        /**
+          * Description...
+         */
+        "trailing"?: string;
         /**
           * Defines the font weight.
          */
@@ -177,6 +217,10 @@ declare namespace LocalJSX {
          */
         "family"?: FamilyType;
         /**
+          * Description...
+         */
+        "leading"?: string;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
@@ -188,6 +232,10 @@ declare namespace LocalJSX {
           * The HTML heading tag.
          */
         "tag"?: TagType;
+        /**
+          * Description...
+         */
+        "trailing"?: string;
         /**
           * Defines the font weight.
          */
@@ -203,6 +251,10 @@ declare namespace LocalJSX {
          */
         "family"?: FamilyType;
         /**
+          * Description...
+         */
+        "leading"?: string;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
@@ -210,6 +262,10 @@ declare namespace LocalJSX {
           * Description...
          */
         "size"?: SizeType;
+        /**
+          * Description...
+         */
+        "trailing"?: string;
         /**
           * Defines the font weight.
          */
@@ -225,6 +281,10 @@ declare namespace LocalJSX {
          */
         "family"?: FamilyType;
         /**
+          * Description...
+         */
+        "leading"?: string;
+        /**
           * Defines the font size.
          */
         "level"?: LevelType;
@@ -232,6 +292,10 @@ declare namespace LocalJSX {
           * Description...
          */
         "size"?: SizeType;
+        /**
+          * Description...
+         */
+        "trailing"?: string;
         /**
           * Defines the font weight.
          */

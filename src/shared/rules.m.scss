@@ -54,3 +54,17 @@
     margin-bottom: calc((var(--offset) + 1px) * -1);
   }
 }
+
+@mixin addons {
+  &.leading {
+    &:before {
+      content: attr(data-leading) '\0000A0';
+    }
+  }
+
+  &.trailing {
+    &:after {
+      content: '\0000A0'attr(data-trailing);
+    }
+  }
+}

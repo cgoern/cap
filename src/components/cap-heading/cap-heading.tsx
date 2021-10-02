@@ -21,6 +21,9 @@ export class CapHeading {
   /** Defines the font family. */
   @Prop() family: FamilyType = 'sans'
 
+  /** Description... */
+  @Prop() leading: string = ''
+
   /** Defines the font size. */
   @Prop() level: LevelType = 'primary'
 
@@ -29,6 +32,9 @@ export class CapHeading {
 
   /** The HTML heading tag. */
   @Prop() tag: TagType = 1
+
+  /** Description... */
+  @Prop() trailing: string = ''
 
   /** Defines the font weight. */
   @Prop() weight: WeightType = 'heavy'
@@ -42,6 +48,10 @@ export class CapHeading {
 
   render() {
     const Tag = `h${this.tag.toString()}`
+    const addons = {
+      'data-leading': this.leading !== '' ? this.leading : false,
+      'data-trailing': this.trailing !== '' ? this.trailing : false,
+    }
 
     return (
       <Host
@@ -49,7 +59,12 @@ export class CapHeading {
           this.clip ? 'clip' : ''
         }`}
       >
-        <Tag class="text">
+        <Tag
+          class={`text ${this.leading !== '' ? 'leading' : ''} ${
+            this.trailing !== '' ? 'trailing' : ''
+          }`}
+          {...addons}
+        >
           <slot></slot>
         </Tag>
       </Host>

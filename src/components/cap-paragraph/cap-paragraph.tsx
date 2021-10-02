@@ -21,11 +21,17 @@ export class CapParagraph {
   /** Defines the font family. */
   @Prop() family: FamilyType = 'sans'
 
+  /** Description... */
+  @Prop() leading: string = ''
+
   /** Defines the font size. */
   @Prop() level: LevelType = 'secondary'
 
   /** Description... */
   @Prop() size: SizeType = 'adaptive'
+
+  /** Description... */
+  @Prop() trailing: string = ''
 
   /** Defines the font weight. */
   @Prop() weight: WeightType = 'soft'
@@ -38,13 +44,23 @@ export class CapParagraph {
   }
 
   render() {
+    const addons = {
+      'data-leading': this.leading !== '' ? this.leading : false,
+      'data-trailing': this.trailing !== '' ? this.trailing : false,
+    }
+
     return (
       <Host
         class={`${this.level} ${this.family} ${this.size} ${this.weight} ${
           this.clip ? 'clip' : ''
         }`}
       >
-        <p class="text">
+        <p
+          class={`text ${this.leading !== '' ? 'leading' : ''} ${
+            this.trailing !== '' ? 'trailing' : ''
+          }`}
+          {...addons}
+        >
           <slot></slot>
         </p>
       </Host>
