@@ -31,7 +31,7 @@ export class CapText {
   @Prop() heading: HeadingTypes
 
   /** Description... */
-  @Prop() leading: string = ''
+  @Prop() leading: string
 
   /** Description... */
   @Prop() level: LevelType = '0'
@@ -46,7 +46,7 @@ export class CapText {
   @Prop() scale: ScaleType = 'adaptive'
 
   /** Description... */
-  @Prop() trailing: string = ''
+  @Prop() trailing: string
 
   /** Description... */
   @Prop() weight: WeightType = 'soft'
@@ -140,8 +140,8 @@ export class CapText {
     return (
       <Host class={hostClass.join(' ')}>
         <Tag
-          class={`text ${this.leading !== '' ? 'leading' : ''} ${
-            this.trailing !== '' ? 'trailing' : ''
+          class={`text ${this.leading ? 'leading' : ''} ${
+            this.trailing ? 'trailing' : ''
           }`}
           {...addons}
         >

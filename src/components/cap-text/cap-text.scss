@@ -16,10 +16,41 @@
  */
 
 :host {
+  /**
+   *
+   * Custom properties
+   *
+   */
+
+  /** @prop --cap-capHeight-mono: Description... */
+  /** @prop --cap-capHeight-sans: Description... */
+  /** @prop --cap-capHeight-serif: Description... */
+  /** @prop --cap-fontFamily-mono: Description... */
+  /** @prop --cap-fontFamily-sans: Description... */
+  /** @prop --cap-fontFamily-serif: Description... */
+  /** @prop --cap-fontFeatureSettings-mono: Description... */
+  /** @prop --cap-fontFeatureSettings-sans: Description... */
+  /** @prop --cap-fontFeatureSettings-serif: Description... */
+  /** @prop --cap-fontWeight-heavy-mono: Description... */
+  /** @prop --cap-fontWeight-heavy-sans: Description... */
+  /** @prop --cap-fontWeight-heavy-serif: Description... */
+  /** @prop --cap-spacingFactor-mono: Description... */
+  /** @prop --cap-spacingFactor-sans: Description... */
+  /** @prop --cap-spacingFactor-serif: Description... */
+  /** @prop --cap-upm-mono: Description... */
+  /** @prop --cap-upm-sans: Description... */
+  /** @prop --cap-upm-serif: Description... */
+
   display: block;
   min-width: var(--minWidth, auto);
   padding-bottom: 1px;
   padding-top: 1px;
+
+  /**
+   *
+   * Trim
+   *
+   */
 
   &::before,
   &::after {
@@ -37,6 +68,12 @@
   }
 
   @at-root {
+    /**
+     *
+     * Clip
+     *
+     */
+
     #{&}(.clip) {
       --minWidth: 0;
       --overflow: hidden;
@@ -45,9 +82,21 @@
       --width: 100%;
     }
 
+    /**
+     *
+     * Line
+     *
+     */
+
     #{&}(.line) {
       --whiteSpace: nowrap;
     }
+
+    /**
+     *
+     * Scales
+     *
+     */
 
     #{&}(.adaptive) {
       --fontSize: var(--fontSize-normal);
@@ -69,6 +118,12 @@
       --lineHeight: var(--lineHeight-large);
     }
 
+    /**
+     *
+     * Levels
+     *
+     */
+
     @each $level, $props in self.$levels {
       $hasSign: if(
         (string.index($level, '+') != null) or
@@ -85,6 +140,12 @@
         }
       }
     }
+
+    /**
+     *
+     * Families
+     *
+     */
 
     @each $familyKey, $familyValue in self.$families {
       #{&}(.#{$familyKey}) {
@@ -108,6 +169,12 @@
         }
       }
     }
+
+    /**
+     *
+     * Weights
+     *
+     */
 
     @each $weightKey in map.keys(self.$weights) {
       #{&}(.#{$weightKey}) {
@@ -135,6 +202,12 @@
   -webkit-text-size-adjust: none;
   white-space: var(--whiteSpace, normal);
   width: var(--width, auto);
+
+  /**
+   *
+   * Addons
+   *
+   */
 
   &.leading {
     &:before {

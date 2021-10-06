@@ -5,141 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { FamilyType, SizeType, WeightType } from "./shared/types";
-import { LevelType, TagType } from "./components/cap-display/types";
-import { LevelType as LevelType1, TagType as TagType1 } from "./components/cap-heading/types";
-import { LevelType as LevelType2 } from "./components/cap-label/types";
-import { LevelType as LevelType3 } from "./components/cap-paragraph/types";
-import { FamilyType as FamilyType1, HeadingTypes, LevelType as LevelType4, ScaleType, WeightType as WeightType1 } from "./components/cap-text/types";
+import { FamilyType, HeadingTypes, LevelType, ScaleType, WeightType } from "./components/cap-text/types";
 export namespace Components {
-    interface CapDisplay {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip": boolean;
-        /**
-          * Defines the font family.
-         */
-        "family": FamilyType;
-        /**
-          * Description...
-         */
-        "leading": string;
-        /**
-          * Defines the font size.
-         */
-        "level": LevelType;
-        /**
-          * Description...
-         */
-        "size": SizeType;
-        /**
-          * The HTML heading tag.
-         */
-        "tag": TagType;
-        /**
-          * Description...
-         */
-        "trailing": string;
-        /**
-          * Defines the font weight.
-         */
-        "weight": WeightType;
-    }
-    interface CapHeading {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip": boolean;
-        /**
-          * Defines the font family.
-         */
-        "family": FamilyType;
-        /**
-          * Description...
-         */
-        "leading": string;
-        /**
-          * Defines the font size.
-         */
-        "level": LevelType;
-        /**
-          * Description...
-         */
-        "size": SizeType;
-        /**
-          * The HTML heading tag.
-         */
-        "tag": TagType;
-        /**
-          * Description...
-         */
-        "trailing": string;
-        /**
-          * Defines the font weight.
-         */
-        "weight": WeightType;
-    }
-    interface CapLabel {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip": boolean;
-        /**
-          * Defines the font family.
-         */
-        "family": FamilyType;
-        /**
-          * Description...
-         */
-        "leading": string;
-        /**
-          * Defines the font size.
-         */
-        "level": LevelType;
-        /**
-          * Description...
-         */
-        "size": SizeType;
-        /**
-          * Description...
-         */
-        "trailing": string;
-        /**
-          * Defines the font weight.
-         */
-        "weight": WeightType;
-    }
-    interface CapParagraph {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip": boolean;
-        /**
-          * Defines the font family.
-         */
-        "family": FamilyType;
-        /**
-          * Description...
-         */
-        "leading": string;
-        /**
-          * Defines the font size.
-         */
-        "level": LevelType;
-        /**
-          * Description...
-         */
-        "size": SizeType;
-        /**
-          * Description...
-         */
-        "trailing": string;
-        /**
-          * Defines the font weight.
-         */
-        "weight": WeightType;
-    }
     interface CapText {
         /**
           * Description...
@@ -184,30 +51,6 @@ export namespace Components {
     }
 }
 declare global {
-    interface HTMLCapDisplayElement extends Components.CapDisplay, HTMLStencilElement {
-    }
-    var HTMLCapDisplayElement: {
-        prototype: HTMLCapDisplayElement;
-        new (): HTMLCapDisplayElement;
-    };
-    interface HTMLCapHeadingElement extends Components.CapHeading, HTMLStencilElement {
-    }
-    var HTMLCapHeadingElement: {
-        prototype: HTMLCapHeadingElement;
-        new (): HTMLCapHeadingElement;
-    };
-    interface HTMLCapLabelElement extends Components.CapLabel, HTMLStencilElement {
-    }
-    var HTMLCapLabelElement: {
-        prototype: HTMLCapLabelElement;
-        new (): HTMLCapLabelElement;
-    };
-    interface HTMLCapParagraphElement extends Components.CapParagraph, HTMLStencilElement {
-    }
-    var HTMLCapParagraphElement: {
-        prototype: HTMLCapParagraphElement;
-        new (): HTMLCapParagraphElement;
-    };
     interface HTMLCapTextElement extends Components.CapText, HTMLStencilElement {
     }
     var HTMLCapTextElement: {
@@ -215,142 +58,10 @@ declare global {
         new (): HTMLCapTextElement;
     };
     interface HTMLElementTagNameMap {
-        "cap-display": HTMLCapDisplayElement;
-        "cap-heading": HTMLCapHeadingElement;
-        "cap-label": HTMLCapLabelElement;
-        "cap-paragraph": HTMLCapParagraphElement;
         "cap-text": HTMLCapTextElement;
     }
 }
 declare namespace LocalJSX {
-    interface CapDisplay {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip"?: boolean;
-        /**
-          * Defines the font family.
-         */
-        "family"?: FamilyType;
-        /**
-          * Description...
-         */
-        "leading"?: string;
-        /**
-          * Defines the font size.
-         */
-        "level"?: LevelType;
-        /**
-          * Description...
-         */
-        "size"?: SizeType;
-        /**
-          * The HTML heading tag.
-         */
-        "tag"?: TagType;
-        /**
-          * Description...
-         */
-        "trailing"?: string;
-        /**
-          * Defines the font weight.
-         */
-        "weight"?: WeightType;
-    }
-    interface CapHeading {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip"?: boolean;
-        /**
-          * Defines the font family.
-         */
-        "family"?: FamilyType;
-        /**
-          * Description...
-         */
-        "leading"?: string;
-        /**
-          * Defines the font size.
-         */
-        "level"?: LevelType;
-        /**
-          * Description...
-         */
-        "size"?: SizeType;
-        /**
-          * The HTML heading tag.
-         */
-        "tag"?: TagType;
-        /**
-          * Description...
-         */
-        "trailing"?: string;
-        /**
-          * Defines the font weight.
-         */
-        "weight"?: WeightType;
-    }
-    interface CapLabel {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip"?: boolean;
-        /**
-          * Defines the font family.
-         */
-        "family"?: FamilyType;
-        /**
-          * Description...
-         */
-        "leading"?: string;
-        /**
-          * Defines the font size.
-         */
-        "level"?: LevelType;
-        /**
-          * Description...
-         */
-        "size"?: SizeType;
-        /**
-          * Description...
-         */
-        "trailing"?: string;
-        /**
-          * Defines the font weight.
-         */
-        "weight"?: WeightType;
-    }
-    interface CapParagraph {
-        /**
-          * If the text should be clipped at the end of the line.
-         */
-        "clip"?: boolean;
-        /**
-          * Defines the font family.
-         */
-        "family"?: FamilyType;
-        /**
-          * Description...
-         */
-        "leading"?: string;
-        /**
-          * Defines the font size.
-         */
-        "level"?: LevelType;
-        /**
-          * Description...
-         */
-        "size"?: SizeType;
-        /**
-          * Description...
-         */
-        "trailing"?: string;
-        /**
-          * Defines the font weight.
-         */
-        "weight"?: WeightType;
-    }
     interface CapText {
         /**
           * Description...
@@ -394,10 +105,6 @@ declare namespace LocalJSX {
         "weight"?: WeightType;
     }
     interface IntrinsicElements {
-        "cap-display": CapDisplay;
-        "cap-heading": CapHeading;
-        "cap-label": CapLabel;
-        "cap-paragraph": CapParagraph;
         "cap-text": CapText;
     }
 }
@@ -405,10 +112,6 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "cap-display": LocalJSX.CapDisplay & JSXBase.HTMLAttributes<HTMLCapDisplayElement>;
-            "cap-heading": LocalJSX.CapHeading & JSXBase.HTMLAttributes<HTMLCapHeadingElement>;
-            "cap-label": LocalJSX.CapLabel & JSXBase.HTMLAttributes<HTMLCapLabelElement>;
-            "cap-paragraph": LocalJSX.CapParagraph & JSXBase.HTMLAttributes<HTMLCapParagraphElement>;
             "cap-text": LocalJSX.CapText & JSXBase.HTMLAttributes<HTMLCapTextElement>;
         }
     }
