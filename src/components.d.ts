@@ -10,6 +10,7 @@ import { LevelType, TagType } from "./components/cap-display/types";
 import { LevelType as LevelType1, TagType as TagType1 } from "./components/cap-heading/types";
 import { LevelType as LevelType2 } from "./components/cap-label/types";
 import { LevelType as LevelType3 } from "./components/cap-paragraph/types";
+import { FamilyType as FamilyType1, HeadingTypes, LevelType as LevelType4, ScaleType, WeightType as WeightType1 } from "./components/cap-text/types";
 export namespace Components {
     interface CapDisplay {
         /**
@@ -139,6 +140,48 @@ export namespace Components {
          */
         "weight": WeightType;
     }
+    interface CapText {
+        /**
+          * Description...
+         */
+        "clip": boolean;
+        /**
+          * Description...
+         */
+        "family": FamilyType;
+        /**
+          * Description...
+         */
+        "heading": HeadingTypes;
+        /**
+          * Description...
+         */
+        "leading": string;
+        /**
+          * Description...
+         */
+        "level": LevelType;
+        /**
+          * Description...
+         */
+        "line": boolean;
+        /**
+          * Description...
+         */
+        "paragraph": boolean;
+        /**
+          * Description...
+         */
+        "scale": ScaleType;
+        /**
+          * Description...
+         */
+        "trailing": string;
+        /**
+          * Description...
+         */
+        "weight": WeightType;
+    }
 }
 declare global {
     interface HTMLCapDisplayElement extends Components.CapDisplay, HTMLStencilElement {
@@ -165,11 +208,18 @@ declare global {
         prototype: HTMLCapParagraphElement;
         new (): HTMLCapParagraphElement;
     };
+    interface HTMLCapTextElement extends Components.CapText, HTMLStencilElement {
+    }
+    var HTMLCapTextElement: {
+        prototype: HTMLCapTextElement;
+        new (): HTMLCapTextElement;
+    };
     interface HTMLElementTagNameMap {
         "cap-display": HTMLCapDisplayElement;
         "cap-heading": HTMLCapHeadingElement;
         "cap-label": HTMLCapLabelElement;
         "cap-paragraph": HTMLCapParagraphElement;
+        "cap-text": HTMLCapTextElement;
     }
 }
 declare namespace LocalJSX {
@@ -301,11 +351,54 @@ declare namespace LocalJSX {
          */
         "weight"?: WeightType;
     }
+    interface CapText {
+        /**
+          * Description...
+         */
+        "clip"?: boolean;
+        /**
+          * Description...
+         */
+        "family"?: FamilyType;
+        /**
+          * Description...
+         */
+        "heading"?: HeadingTypes;
+        /**
+          * Description...
+         */
+        "leading"?: string;
+        /**
+          * Description...
+         */
+        "level"?: LevelType;
+        /**
+          * Description...
+         */
+        "line"?: boolean;
+        /**
+          * Description...
+         */
+        "paragraph"?: boolean;
+        /**
+          * Description...
+         */
+        "scale"?: ScaleType;
+        /**
+          * Description...
+         */
+        "trailing"?: string;
+        /**
+          * Description...
+         */
+        "weight"?: WeightType;
+    }
     interface IntrinsicElements {
         "cap-display": CapDisplay;
         "cap-heading": CapHeading;
         "cap-label": CapLabel;
         "cap-paragraph": CapParagraph;
+        "cap-text": CapText;
     }
 }
 export { LocalJSX as JSX };
@@ -316,6 +409,7 @@ declare module "@stencil/core" {
             "cap-heading": LocalJSX.CapHeading & JSXBase.HTMLAttributes<HTMLCapHeadingElement>;
             "cap-label": LocalJSX.CapLabel & JSXBase.HTMLAttributes<HTMLCapLabelElement>;
             "cap-paragraph": LocalJSX.CapParagraph & JSXBase.HTMLAttributes<HTMLCapParagraphElement>;
+            "cap-text": LocalJSX.CapText & JSXBase.HTMLAttributes<HTMLCapTextElement>;
         }
     }
 }

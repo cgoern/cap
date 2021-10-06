@@ -1,0 +1,109 @@
+/**
+ *
+ * Variables
+ *
+ */
+
+$levels: (
+  '+6': (
+    'normal': (
+      45px,
+      52px,
+    ),
+    'large': (
+      51px,
+      58px,
+    ),
+  ),
+  '+5': (
+    'normal': (
+      37px,
+      44px,
+    ),
+    'large': (
+      42px,
+      48px,
+    ),
+  ),
+  '+4': (
+    'normal': (
+      31px,
+      38px,
+    ),
+    'large': (
+      35px,
+      42px,
+    ),
+  ),
+  '+3': (
+    'normal': (
+      26px,
+      34px,
+    ),
+    'large': (
+      29px,
+      36px,
+    ),
+  ),
+  '+2': (
+    'normal': (
+      22px,
+      30px,
+    ),
+    'large': (
+      24px,
+      32px,
+    ),
+  ),
+  '+1': (
+    'normal': (
+      18px,
+      26px,
+    ),
+    'large': (
+      20px,
+      28px,
+    ),
+  ),
+  '0': (
+    'normal': (
+      15px,
+      22px,
+    ),
+    'large': (
+      17px,
+      24px,
+    ),
+  ),
+  '-1': (
+    'normal': (
+      12px,
+      18px,
+    ),
+    'large': (
+      14px,
+      20px,
+    ),
+  ),
+  '-2': (
+    'normal': (
+      10px,
+      16px,
+    ),
+    'large': (
+      12px,
+      18px,
+    ),
+  ),
+);
+$families: (
+  'sans': 'sans-serif',
+  'serif': 'serif',
+  'mono': 'monospace',
+);
+$weights: (
+  'light': 300,
+  'soft': 400,
+  'strong': 500,
+  'heavy': 600,
+);

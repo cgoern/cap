@@ -10,17 +10,27 @@
   --color-separator: rgba(119 119 119 / 10%);
   --color-surface-primary: rgb(255 255 255);
   --color-surface-secondary: rgb(243 243 243);
-  --cap-cap-height-sans: 2048;
-  --cap-cap-height-serif: 1486;
-  --cap-cap-height-mono: 1374;
-  --cap-font-family-sans: 'Inter';
-  --cap-font-family-serif: 'Merriweather';
-  --cap-font-family-mono: 'Fira Code';
-  --cap-font-feature-settings-sans: 'calt', 'liga', 'ss03', 'zero', 'cv05',
-    'cv10';
-  --cap-font-weight-heavy: 600; // FIXME: separate weights for families
-  --cap-spacing-factor-serif: 0;
-  --cap-spacing-factor-mono: 0;
+
+  --cap-capHeight-sans: 2048;
+  --cap-capHeight-serif: 1486;
+  --cap-capHeight-mono: 1374;
+
+  --cap-fontFamily-sans: 'Inter';
+  --cap-fontFamily-serif: 'Merriweather';
+  --cap-fontFamily-mono: 'Fira Code';
+
+  --cap-fontFeatureSettings-sans: 'calt', 'liga', 'ss03', 'zero', 'cv05', 'cv10';
+  --cap-fontFeatureSettings-serif: normal;
+  --cap-fontFeatureSettings-mono: normal;
+
+  --cap-fontWeight-heavy-sans: 600;
+  --cap-fontWeight-heavy-serif: 700;
+  --cap-fontWeight-heavy-mono: 600;
+
+  --cap-spacingFactor-sans: 1;
+  --cap-spacingFactor-serif: 0;
+  --cap-spacingFactor-mono: 0;
+
   --cap-upm-sans: 2816;
   --cap-upm-serif: 2000;
   --cap-upm-mono: 1950;
@@ -38,7 +48,7 @@
   font-display: swap;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 900;
   src: url('./../fonts/Inter.var.woff2') format('woff2');
 }
 
@@ -46,7 +56,7 @@
   font-display: swap;
   font-family: 'Merriweather';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 900;
   src: url('./../fonts/Merriweather.var.woff2') format('woff2');
 }
 
@@ -54,7 +64,7 @@
   font-display: swap;
   font-family: 'Fira Code';
   font-style: normal;
-  font-weight: 400 600;
+  font-weight: 300 900;
   src: url('./../fonts/FiraCode.var.woff2') format('woff2');
 }
 

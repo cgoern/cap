@@ -1,0 +1,150 @@
+/**
+ *
+ * Modules
+ *
+ */
+
+@use './cap-text.m' as self;
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+/**
+ *
+ * Rules
+ *
+ */
+
+:host {
+  display: block;
+  min-width: var(--minWidth, auto);
+  padding-bottom: 1px;
+  padding-top: 1px;
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+  }
+
+  &::before {
+    margin-top: calc((var(--offset) + 1px) * -1);
+  }
+
+  &::after {
+    margin-bottom: calc((var(--offset) + 1px) * -1);
+  }
+
+  @at-root {
+    #{&}(.clip) {
+      --minWidth: 0;
+      --overflow: hidden;
+      --textOverflow: ellipsis;
+      --whiteSpace: nowrap;
+      --width: 100%;
+    }
+
+    #{&}(.line) {
+      --whiteSpace: nowrap;
+    }
+
+    #{&}(.adaptive) {
+      --fontSize: var(--fontSize-normal);
+      --lineHeight: var(--lineHeight-normal);
+
+      @media (pointer: coarse) {
+        --fontSize: var(--fontSize-large);
+        --lineHeight: var(--lineHeight-large);
+      }
+    }
+
+    #{&}(.normal) {
+      --fontSize: var(--fontSize-normal);
+      --lineHeight: var(--lineHeight-normal);
+    }
+
+    #{&}(.large) {
+      --fontSize: var(--fontSize-large);
+      --lineHeight: var(--lineHeight-large);
+    }
+
+    @each $level, $props in self.$levels {
+      $hasSign: if(
+        (string.index($level, '+') != null) or
+          (string.index($level, '-') != null),
+        true,
+        false
+      );
+      $selector: if($hasSign, '\\#{$level}', '\\3#{$level}');
+
+      #{&}(.#{$selector}) {
+        @each $scale in map.keys($props) {
+          --fontSize-#{$scale}: #{list.nth(map.get($props, $scale), 1)};
+          --lineHeight-#{$scale}: #{list.nth(map.get($props, $scale), 2)};
+        }
+      }
+    }
+
+    @each $familyKey, $familyValue in self.$families {
+      #{&}(.#{$familyKey}) {
+        --capHeight: var(--cap-capHeight-#{$familyKey}, 2000);
+        --fontFamily: var(
+          --cap-fontFamily-#{$familyKey},
+          #{string.unquote($familyValue)}
+        );
+        --fontFeatureSettings: var(
+          --cap-fontFeatureSettings-#{$familyKey},
+          normal
+        );
+        --spacingFactor: var(--cap-spacingFactor-#{$familyKey}, 1);
+        --upm: var(--cap-upm-#{$familyKey}, 3000);
+
+        @each $weightKey, $weightValue in self.$weights {
+          --fontWeight-#{$weightKey}: var(
+            --cap-fontWeight-#{$weightKey}-#{$familyKey},
+            #{$weightValue}
+          );
+        }
+      }
+    }
+
+    @each $weightKey in map.keys(self.$weights) {
+      #{&}(.#{$weightKey}) {
+        --fontWeight: var(--fontWeight-#{$weightKey});
+      }
+    }
+  }
+}
+
+.text {
+  display: block;
+  font-family: var(--fontFamily);
+  font-feature-settings: var(--fontFeatureSettings);
+  font-kerning: normal;
+  font-size: var(--fontSize);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-weight: var(--fontWeight);
+  letter-spacing: var(--letterSpacing);
+  line-height: var(--lineHeight);
+  margin: 0;
+  overflow: var(--overflow, visible);
+  text-overflow: var(--textOverflow, clip);
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  white-space: var(--whiteSpace, normal);
+  width: var(--width, auto);
+
+  &.leading {
+    &:before {
+      content: attr(data-leading) '\0000A0';
+    }
+  }
+
+  &.trailing {
+    &:after {
+      content: '\0000A0'attr(data-trailing);
+    }
+  }
+}
