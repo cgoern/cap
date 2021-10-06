@@ -22,7 +22,7 @@ export class CapText {
    */
 
   /** Description... */
-  @Prop() clip: boolean = false
+  @Prop() ellipsis: boolean = false
 
   /** Description... */
   @Prop() family: FamilyType = 'sans'
@@ -37,7 +37,7 @@ export class CapText {
   @Prop() level: LevelType = '0'
 
   /** Description... */
-  @Prop() line: boolean = false
+  @Prop() noWrap: boolean = false
 
   /** Description... */
   @Prop() paragraph: boolean
@@ -124,10 +124,10 @@ export class CapText {
       : 'span'
 
     const hostClass = [
-      this.clip ? 'clip' : '',
+      this.ellipsis ? 'ellipsis' : '',
       this.family,
       this.level,
-      this.line ? 'line' : '',
+      this.noWrap ? 'no-wrap' : '',
       this.scale,
       this.weight,
     ]

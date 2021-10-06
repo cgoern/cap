@@ -11,7 +11,7 @@ export namespace Components {
         /**
           * Description...
          */
-        "clip": boolean;
+        "ellipsis": boolean;
         /**
           * Description...
          */
@@ -31,7 +31,7 @@ export namespace Components {
         /**
           * Description...
          */
-        "line": boolean;
+        "noWrap": boolean;
         /**
           * Description...
          */
@@ -66,7 +66,7 @@ declare namespace LocalJSX {
         /**
           * Description...
          */
-        "clip"?: boolean;
+        "ellipsis"?: boolean;
         /**
           * Description...
          */
@@ -86,7 +86,7 @@ declare namespace LocalJSX {
         /**
           * Description...
          */
-        "line"?: boolean;
+        "noWrap"?: boolean;
         /**
           * Description...
          */

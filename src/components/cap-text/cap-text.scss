@@ -70,11 +70,11 @@
   @at-root {
     /**
      *
-     * Clip
+     * Ellipsis
      *
      */
 
-    #{&}(.clip) {
+    #{&}(.ellipsis) {
       --minWidth: 0;
       --overflow: hidden;
       --textOverflow: ellipsis;
@@ -84,11 +84,11 @@
 
     /**
      *
-     * Line
+     * No wrap
      *
      */
 
-    #{&}(.line) {
+    #{&}(.no-wrap) {
       --whiteSpace: nowrap;
     }
 
