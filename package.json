@@ -37,11 +37,12 @@
     "build": "stencil build --docs",
     "start": "stencil build --dev --watch --serve",
     "stylelint": "stylelint \"**/*.scss\" --fix",
-    "prettier": "prettier \"**/*.{json,ts,tsx,md,html,yml}\" --write",
-    "format": "npm run prettier && npm run stylelint"
+    "prettier": "prettier \"**/*.{json,ts,tsx,js,md,html,yml}\" --write",
+    "format": "npm run prettier && npm run stylelint",
+    "font-metrics": "node tools/font-metrics.js"
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 120,
     "semi": false,
     "singleQuote": true,
     "htmlWhitespaceSensitivity": "strict"
