@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { FamilyType, HeadingTypes, ScaleType, SizeTypes, WeightType } from "./components/cap-text/types";
+import { FamilyType, HeadingTypes, LineHeightTypes, ScaleType, SizeTypes, WeightType } from "./components/cap-text/types";
 export namespace Components {
     interface CapText {
         /**
@@ -23,7 +23,7 @@ export namespace Components {
         /**
           * Description...
          */
-        "leading": string;
+        "lineHeight": LineHeightTypes;
         /**
           * Description...
          */
@@ -43,7 +43,11 @@ export namespace Components {
         /**
           * Description...
          */
-        "trailing": string;
+        "textAfter": string;
+        /**
+          * Description...
+         */
+        "textBefore": string;
         /**
           * Description...
          */
@@ -78,7 +82,7 @@ declare namespace LocalJSX {
         /**
           * Description...
          */
-        "leading"?: string;
+        "lineHeight"?: LineHeightTypes;
         /**
           * Description...
          */
@@ -98,7 +102,11 @@ declare namespace LocalJSX {
         /**
           * Description...
          */
-        "trailing"?: string;
+        "textAfter"?: string;
+        /**
+          * Description...
+         */
+        "textBefore"?: string;
         /**
           * Description...
          */

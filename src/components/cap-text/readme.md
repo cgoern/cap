@@ -4,18 +4,19 @@
 
 ## Properties
 
-| Property    | Attribute   | Description    | Type                                                                                  | Default      |
-| ----------- | ----------- | -------------- | ------------------------------------------------------------------------------------- | ------------ |
-| `ellipsis`  | `ellipsis`  | Description... | `boolean`                                                                             | `false`      |
-| `family`    | `family`    | Description... | `"mono" \| "sans" \| "serif"`                                                         | `'sans'`     |
-| `heading`   | `heading`   | Description... | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                          | `undefined`  |
-| `leading`   | `leading`   | Description... | `string`                                                                              | `undefined`  |
-| `noWrap`    | `no-wrap`   | Description... | `boolean`                                                                             | `false`      |
-| `paragraph` | `paragraph` | Description... | `boolean`                                                                             | `undefined`  |
-| `scale`     | `scale`     | Description... | `"adaptive" \| "lg" \| "md"`                                                          | `'adaptive'` |
-| `size`      | `size`      | Description... | `"+1" \| "+2" \| "+3" \| "+4" \| "+5" \| "+6" \| "+7" \| "+8" \| "-1" \| "-2" \| "0"` | `'0'`        |
-| `trailing`  | `trailing`  | Description... | `string`                                                                              | `undefined`  |
-| `weight`    | `weight`    | Description... | `"heavy" \| "light" \| "soft" \| "strong"`                                            | `'soft'`     |
+| Property     | Attribute     | Description    | Type                                                                                  | Default      |
+| ------------ | ------------- | -------------- | ------------------------------------------------------------------------------------- | ------------ |
+| `ellipsis`   | `ellipsis`    | Description... | `boolean`                                                                             | `false`      |
+| `family`     | `family`      | Description... | `"mono" \| "sans" \| "serif"`                                                         | `'sans'`     |
+| `heading`    | `heading`     | Description... | `1 \| 2 \| 3 \| 4 \| 5 \| 6`                                                          | `undefined`  |
+| `lineHeight` | `line-height` | Description... | `"loose" \| "normal" \| "tight"`                                                      | `'normal'`   |
+| `noWrap`     | `no-wrap`     | Description... | `boolean`                                                                             | `false`      |
+| `paragraph`  | `paragraph`   | Description... | `boolean`                                                                             | `undefined`  |
+| `scale`      | `scale`       | Description... | `"adaptive" \| "large" \| "medium"`                                                   | `'adaptive'` |
+| `size`       | `size`        | Description... | `"+1" \| "+2" \| "+3" \| "+4" \| "+5" \| "+6" \| "+7" \| "+8" \| "-1" \| "-2" \| "0"` | `'0'`        |
+| `textAfter`  | `text-after`  | Description... | `string`                                                                              | `undefined`  |
+| `textBefore` | `text-before` | Description... | `string`                                                                              | `undefined`  |
+| `weight`     | `weight`      | Description... | `"heavy" \| "light" \| "soft" \| "strong"`                                            | `'soft'`     |
 
 ## CSS Custom Properties
 
@@ -42,9 +43,9 @@
 | `--cap-fontWeight-strong-mono`    | Description... |
 | `--cap-fontWeight-strong-sans`    | Description... |
 | `--cap-fontWeight-strong-serif`   | Description... |
-| `--cap-spacingFactor-mono`        | Description... |
-| `--cap-spacingFactor-sans`        | Description... |
-| `--cap-spacingFactor-serif`       | Description... |
+| `--cap-letterSpacingFactor-mono`  | Description... |
+| `--cap-letterSpacingFactor-sans`  | Description... |
+| `--cap-letterSpacingFactor-serif` | Description... |
 | `--cap-upm-mono`                  | Description... |
 | `--cap-upm-sans`                  | Description... |
 | `--cap-upm-serif`                 | Description... |

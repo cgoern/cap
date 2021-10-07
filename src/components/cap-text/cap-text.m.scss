@@ -1,116 +1,124 @@
 /**
  *
+ * Modules
+ *
+ */
+
+@use 'sass:string';
+
+/**
+ *
  * Variables
  *
  */
 
 $sizes: (
   '+8': (
-    'md': (
+    'medium': (
       64px,
       72px,
     ),
-    'lg': (
+    'large': (
       73px,
       80px,
     ),
   ),
   '+7': (
-    'md': (
+    'medium': (
       54px,
       62px,
     ),
-    'lg': (
+    'large': (
       61px,
       68px,
     ),
   ),
   '+6': (
-    'md': (
+    'medium': (
       45px,
       52px,
     ),
-    'lg': (
+    'large': (
       51px,
       58px,
     ),
   ),
   '+5': (
-    'md': (
+    'medium': (
       37px,
       44px,
     ),
-    'lg': (
+    'large': (
       42px,
       48px,
     ),
   ),
   '+4': (
-    'md': (
+    'medium': (
       31px,
       38px,
     ),
-    'lg': (
+    'large': (
       35px,
       42px,
     ),
   ),
   '+3': (
-    'md': (
+    'medium': (
       26px,
       34px,
     ),
-    'lg': (
+    'large': (
       29px,
       36px,
     ),
   ),
   '+2': (
-    'md': (
+    'medium': (
       22px,
       30px,
     ),
-    'lg': (
+    'large': (
       24px,
       32px,
     ),
   ),
   '+1': (
-    'md': (
+    'medium': (
       18px,
       26px,
     ),
-    'lg': (
+    'large': (
       20px,
       28px,
     ),
   ),
   '0': (
-    'md': (
+    'medium': (
       15px,
       22px,
     ),
-    'lg': (
+    'large': (
       17px,
       24px,
     ),
   ),
   '-1': (
-    'md': (
+    'medium': (
       12px,
       18px,
     ),
-    'lg': (
+    'large': (
       14px,
       20px,
     ),
   ),
   '-2': (
-    'md': (
+    'medium': (
       10px,
       16px,
     ),
-    'lg': (
+    'large': (
       12px,
       18px,
     ),
@@ -127,3 +135,16 @@ $weights: (
   'strong': 500,
   'heavy': 600,
 );
+
+/**
+ *
+ * Functions
+ *
+ */
+
+@function hasSign($string) {
+  $startsPositive: string.index($string, '+') == 1;
+  $startsNegative: string.index($string, '-') == 1;
+
+  @return if(($startsPositive or $startsNegative), true, false);
+}

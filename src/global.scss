@@ -13,11 +13,11 @@
 
   --cap-capHeight-sans: 2048;
   --cap-capHeight-serif: 1486;
-  --cap-capHeight-mono: 1374;
+  --cap-capHeight-mono: 1456;
 
   --cap-fontFamily-sans: 'Inter';
   --cap-fontFamily-serif: 'Merriweather';
-  --cap-fontFamily-mono: 'Fira Code';
+  --cap-fontFamily-mono: 'Roboto Mono';
 
   --cap-fontFeatureSettings-sans: 'calt', 'liga', 'ss03', 'zero', 'cv05', 'cv10';
   --cap-fontFeatureSettings-serif: normal;
@@ -38,13 +38,13 @@
   --cap-fontWeight-soft-mono: 400;
   --cap-fontWeight-strong-mono: 500;
 
-  --cap-spacingFactor-sans: 1;
-  --cap-spacingFactor-serif: 0;
-  --cap-spacingFactor-mono: 0;
+  --cap-letterSpacingFactor-sans: 1;
+  --cap-letterSpacingFactor-serif: 0;
+  --cap-letterSpacingFactor-mono: 0;
 
   --cap-upm-sans: 2816;
   --cap-upm-serif: 2000;
-  --cap-upm-mono: 1950;
+  --cap-upm-mono: 2048;
 
   @media (prefers-color-scheme: dark) {
     --color-foreground-primary: rgba(255 255 255 / 94%);
@@ -56,7 +56,6 @@
 }
 
 @font-face {
-  font-display: swap;
   font-family: 'Inter';
   font-style: normal;
   font-weight: 300 900;
@@ -64,7 +63,6 @@
 }
 
 @font-face {
-  font-display: swap;
   font-family: 'Merriweather';
   font-style: normal;
   font-weight: 300 900;
@@ -72,11 +70,10 @@
 }
 
 @font-face {
-  font-display: swap;
-  font-family: 'Fira Code';
+  font-family: 'Roboto Mono';
   font-style: normal;
   font-weight: 300 900;
-  src: url('./../fonts/FiraCode.var.woff2') format('woff2');
+  src: url('./../fonts/RobotoMono.var.woff2') format('woff2');
 }
 
 body {
@@ -104,6 +101,11 @@ header {
 div {
   display: grid;
   gap: 48px;
+
+  &.boxed {
+    margin: 0 auto;
+    max-width: 640px;
+  }
 }
 
 span {

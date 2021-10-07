@@ -1,11 +1,5 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core'
-import {
-  FamilyType,
-  HeadingTypes,
-  SizeTypes,
-  ScaleType,
-  WeightType,
-} from './types'
+import { FamilyType, HeadingTypes, LineHeightTypes, SizeTypes, ScaleType, WeightType } from './types'
 
 @Component({
   tag: 'cap-text',
@@ -31,7 +25,7 @@ export class CapText {
   @Prop() heading: HeadingTypes
 
   /** Description... */
-  @Prop() leading: string
+  @Prop() lineHeight: LineHeightTypes = 'normal'
 
   /** Description... */
   @Prop() size: SizeTypes = '0'
@@ -46,7 +40,10 @@ export class CapText {
   @Prop() scale: ScaleType = 'adaptive'
 
   /** Description... */
-  @Prop() trailing: string
+  @Prop() textAfter: string
+
+  /** Description... */
+  @Prop() textBefore: string
 
   /** Description... */
   @Prop() weight: WeightType = 'soft'
@@ -68,12 +65,12 @@ export class CapText {
   }
 
   private getLetterSpacing = (style: CSSStyleDeclaration): number => {
-    const spacingFactor = parseInt(style.getPropertyValue('--spacingFactor'))
+    const letterSpacingFactor = parseInt(style.getPropertyValue('--letterSpacingFactor'))
 
-    if (spacingFactor !== 0) {
+    if (letterSpacingFactor !== 0) {
       const fontSize = parseInt(style.getPropertyValue('--fontSize'))
       const a = -0.0223
-      const b = 0.185 * spacingFactor
+      const b = 0.185 * letterSpacingFactor
       const c = -0.1745
       const d = fontSize
 
@@ -117,34 +114,26 @@ export class CapText {
    */
 
   render() {
-    const Tag = this.heading
-      ? `h${this.heading.toString()}`
-      : this.paragraph
-      ? 'p'
-      : 'span'
+    const Tag = this.heading ? `h${this.heading.toString()}` : this.paragraph ? 'p' : 'span'
 
     const hostClass = [
       this.ellipsis ? 'ellipsis' : '',
       this.family,
-      this.size,
+      this.lineHeight,
       this.noWrap ? 'no-wrap' : '',
       this.scale,
+      this.size,
       this.weight,
     ]
 
     const addons = {
-      'data-leading': this.leading !== '' ? this.leading : false,
-      'data-trailing': this.trailing !== '' ? this.trailing : false,
+      'data-text-before': this.textBefore !== '' ? this.textBefore : false,
+      'data-text-after': this.textAfter !== '' ? this.textAfter : false,
     }
 
     return (
       <Host class={hostClass.join(' ')}>
-        <Tag
-          class={`text ${this.leading ? 'leading' : ''} ${
-            this.trailing ? 'trailing' : ''
-          }`}
-          {...addons}
-        >
+        <Tag class={`text ${this.textBefore ? 'text-before' : ''} ${this.textAfter ? 'text-after' : ''}`} {...addons}>
           <slot></slot>
         </Tag>
       </Host>
