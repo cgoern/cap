@@ -23,22 +23,20 @@ To integrate this library into a framework like Angular, React, etc., take a loo
 
 For a full list of supported properties, take a look at the appropiate component readme:
 
-- [cap-heading](https://github.com/cgoern/cap/blob/main/src/components/cap-heading/readme.md)
-- [cap-label](https://github.com/cgoern/cap/blob/main/src/components/cap-label/readme.md)
-- [cap-paragraph](https://github.com/cgoern/cap/blob/main/src/components/cap-paragraph/readme.md)
+- [cap-text](https://github.com/cgoern/cap/blob/main/src/components/cap-text/readme.md)
 
 <!-- prettier-ignore-start -->
 ```html
-<!-- heading: Headline text -->
-<cap-heading level="primary" tag="1">My Heading</cap-heading>
+<!-- heading: Heading text -->
+<cap-text heading="1" weight="heavy" size="+6">My Heading</cap-text>
 
 <!-- label: Single line or short descriptive body text -->
-<cap-label level="primary" weight="strong">My Label</cap-label>
+<cap-text size="0">My Label</cap-text>
 
 <!-- paragraph: Multi line body text -->
-<cap-paragraph level="primary">
+<cap-text paragraph line-height="loose" size="+1">
   Est vero saepe amet minus molestias fugiat. Quae ab blanditiis quia. Autem et
   cupiditate exercitationem aut. Odit reiciendis cumque aut.
-</cap-paragraph>
+</cap-text>
 ```
 <!-- prettier-ignore-end -->
