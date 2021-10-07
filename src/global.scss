@@ -24,8 +24,19 @@
   --cap-fontFeatureSettings-mono: normal;
 
   --cap-fontWeight-heavy-sans: 600;
-  --cap-fontWeight-heavy-serif: 700;
-  --cap-fontWeight-heavy-mono: 600;
+  --cap-fontWeight-light-sans: 300;
+  --cap-fontWeight-soft-sans: 400;
+  --cap-fontWeight-strong-sans: 500;
+
+  --cap-fontWeight-heavy-serif: 900;
+  --cap-fontWeight-light-serif: 300;
+  --cap-fontWeight-soft-serif: 400;
+  --cap-fontWeight-strong-serif: 600;
+
+  --cap-fontWeight-heavy-mono: 700;
+  --cap-fontWeight-light-mono: 300;
+  --cap-fontWeight-soft-mono: 400;
+  --cap-fontWeight-strong-mono: 500;
 
   --cap-spacingFactor-sans: 1;
   --cap-spacingFactor-serif: 0;
@@ -73,10 +84,10 @@ body {
   color: var(--color-foreground-primary);
   display: grid;
   gap: 48px;
-  grid-template: auto / minmax(auto, 640px);
+  grid-template: auto / minmax(auto, 1280px);
   justify-content: center;
   margin: 0;
-  padding: 32px 16px;
+  padding: 48px 16px;
 }
 
 section {
@@ -92,5 +103,11 @@ header {
 
 div {
   display: grid;
+  gap: 48px;
+}
+
+span {
+  display: flex;
+  flex-wrap: wrap;
   gap: 32px;
 }

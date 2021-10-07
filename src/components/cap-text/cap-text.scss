@@ -34,6 +34,15 @@
   /** @prop --cap-fontWeight-heavy-mono: Description... */
   /** @prop --cap-fontWeight-heavy-sans: Description... */
   /** @prop --cap-fontWeight-heavy-serif: Description... */
+  /** @prop --cap-fontWeight-light-mono: Description... */
+  /** @prop --cap-fontWeight-light-sans: Description... */
+  /** @prop --cap-fontWeight-light-serif: Description... */
+  /** @prop --cap-fontWeight-soft-mono: Description... */
+  /** @prop --cap-fontWeight-soft-sans: Description... */
+  /** @prop --cap-fontWeight-soft-serif: Description... */
+  /** @prop --cap-fontWeight-strong-mono: Description... */
+  /** @prop --cap-fontWeight-strong-sans: Description... */
+  /** @prop --cap-fontWeight-strong-serif: Description... */
   /** @prop --cap-spacingFactor-mono: Description... */
   /** @prop --cap-spacingFactor-sans: Description... */
   /** @prop --cap-spacingFactor-serif: Description... */
@@ -99,23 +108,23 @@
      */
 
     #{&}(.adaptive) {
-      --fontSize: var(--fontSize-normal);
-      --lineHeight: var(--lineHeight-normal);
+      --fontSize: var(--fontSize-md);
+      --lineHeight: var(--lineHeight-md);
 
       @media (pointer: coarse) {
-        --fontSize: var(--fontSize-large);
-        --lineHeight: var(--lineHeight-large);
+        --fontSize: var(--fontSize-lg);
+        --lineHeight: var(--lineHeight-lg);
       }
     }
 
-    #{&}(.normal) {
-      --fontSize: var(--fontSize-normal);
-      --lineHeight: var(--lineHeight-normal);
+    #{&}(.md) {
+      --fontSize: var(--fontSize-md);
+      --lineHeight: var(--lineHeight-md);
     }
 
-    #{&}(.large) {
-      --fontSize: var(--fontSize-large);
-      --lineHeight: var(--lineHeight-large);
+    #{&}(.lg) {
+      --fontSize: var(--fontSize-lg);
+      --lineHeight: var(--lineHeight-lg);
     }
 
     /**
@@ -124,19 +133,25 @@
      *
      */
 
-    @each $level, $props in self.$levels {
+    @each $sizeKey, $sizeProps in self.$sizes {
       $hasSign: if(
-        (string.index($level, '+') != null) or
-          (string.index($level, '-') != null),
+        (string.index($sizeKey, '+') != null) or
+          (string.index($sizeKey, '-') != null),
         true,
         false
       );
-      $selector: if($hasSign, '\\#{$level}', '\\3#{$level}');
+      $selector: if($hasSign, '\\#{$sizeKey}', '\\3#{$sizeKey}');
 
       #{&}(.#{$selector}) {
-        @each $scale in map.keys($props) {
-          --fontSize-#{$scale}: #{list.nth(map.get($props, $scale), 1)};
-          --lineHeight-#{$scale}: #{list.nth(map.get($props, $scale), 2)};
+        @each $scaleKey in map.keys($sizeProps) {
+          --fontSize-#{$scaleKey}: #{list.nth(
+              map.get($sizeProps, $scaleKey),
+              1
+            )};
+          --lineHeight-#{$scaleKey}: #{list.nth(
+              map.get($sizeProps, $scaleKey),
+              2
+            )};
         }
       }
     }
@@ -154,10 +169,7 @@
           --cap-fontFamily-#{$familyKey},
           #{string.unquote($familyValue)}
         );
-        --fontFeatureSettings: var(
-          --cap-fontFeatureSettings-#{$familyKey},
-          normal
-        );
+        --fontFeatureSettings: var(--cap-fontFeatureSettings-#{$familyKey}, md);
         --spacingFactor: var(--cap-spacingFactor-#{$familyKey}, 1);
         --upm: var(--cap-upm-#{$familyKey}, 3000);
 
@@ -188,7 +200,7 @@
   display: block;
   font-family: var(--fontFamily);
   font-feature-settings: var(--fontFeatureSettings);
-  font-kerning: normal;
+  font-kerning: md;
   font-size: var(--fontSize);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -200,7 +212,7 @@
   text-overflow: var(--textOverflow, clip);
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: none;
-  white-space: var(--whiteSpace, normal);
+  white-space: var(--whiteSpace, md);
   width: var(--width, auto);
 
   /**

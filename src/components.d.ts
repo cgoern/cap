@@ -5,7 +5,7 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { FamilyType, HeadingTypes, LevelType, ScaleType, WeightType } from "./components/cap-text/types";
+import { FamilyType, HeadingTypes, ScaleType, SizeTypes, WeightType } from "./components/cap-text/types";
 export namespace Components {
     interface CapText {
         /**
@@ -27,10 +27,6 @@ export namespace Components {
         /**
           * Description...
          */
-        "level": LevelType;
-        /**
-          * Description...
-         */
         "noWrap": boolean;
         /**
           * Description...
@@ -40,6 +36,10 @@ export namespace Components {
           * Description...
          */
         "scale": ScaleType;
+        /**
+          * Description...
+         */
+        "size": SizeTypes;
         /**
           * Description...
          */
@@ -82,10 +82,6 @@ declare namespace LocalJSX {
         /**
           * Description...
          */
-        "level"?: LevelType;
-        /**
-          * Description...
-         */
         "noWrap"?: boolean;
         /**
           * Description...
@@ -95,6 +91,10 @@ declare namespace LocalJSX {
           * Description...
          */
         "scale"?: ScaleType;
+        /**
+          * Description...
+         */
+        "size"?: SizeTypes;
         /**
           * Description...
          */

@@ -2,7 +2,7 @@ import { Component, Host, h, Prop, Element } from '@stencil/core'
 import {
   FamilyType,
   HeadingTypes,
-  LevelType,
+  SizeTypes,
   ScaleType,
   WeightType,
 } from './types'
@@ -34,7 +34,7 @@ export class CapText {
   @Prop() leading: string
 
   /** Description... */
-  @Prop() level: LevelType = '0'
+  @Prop() size: SizeTypes = '0'
 
   /** Description... */
   @Prop() noWrap: boolean = false
@@ -126,7 +126,7 @@ export class CapText {
     const hostClass = [
       this.ellipsis ? 'ellipsis' : '',
       this.family,
-      this.level,
+      this.size,
       this.noWrap ? 'no-wrap' : '',
       this.scale,
       this.weight,
