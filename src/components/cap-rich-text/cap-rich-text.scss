@@ -125,11 +125,13 @@ cap-rich-text {
 
   /**
    *
-   * Children – p, a
+   * Children – p, ul, ol, a
    *
    */
 
-  p {
+  p,
+  ul,
+  ol {
     font-size: var(--cap-richTextParagraphFontSize);
     line-height: var(--cap-richTextParagraphLineHeight);
   }
