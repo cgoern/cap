@@ -30,6 +30,7 @@ $baseSizes: (
 
 cap-rich-text {
   /** @prop --cap-richTextAnchorColor: Description... */
+  /** @prop --cap-richTextAnchorFontWeight: Description... */
 
   display: block;
   font-family: var(--cap-richTextFontFamily);
@@ -88,7 +89,43 @@ cap-rich-text {
 
   /**
    *
-   * Children
+   * Line heights
+   *
+   */
+
+  &.tight {
+    --cap-richTextParagraphLineHeight-large: var(--cap-richTextParagraphLineHeight-large-tight);
+    --cap-richTextParagraphLineHeight-medium: var(--cap-richTextParagraphLineHeight-medium-tight);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingLineHeight-#{$i}-large: var(--cap-richTextHeadingLineHeight-#{$i}-large-tight);
+      --cap-richTextHeadingLineHeight-#{$i}-medium: var(--cap-richTextHeadingLineHeight-#{$i}-medium-tight);
+    }
+  }
+
+  &.normal {
+    --cap-richTextParagraphLineHeight-large: var(--cap-richTextParagraphLineHeight-large-normal);
+    --cap-richTextParagraphLineHeight-medium: var(--cap-richTextParagraphLineHeight-medium-normal);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingLineHeight-#{$i}-large: var(--cap-richTextHeadingLineHeight-#{$i}-large-normal);
+      --cap-richTextHeadingLineHeight-#{$i}-medium: var(--cap-richTextHeadingLineHeight-#{$i}-medium-normal);
+    }
+  }
+
+  &.loose {
+    --cap-richTextParagraphLineHeight-large: var(--cap-richTextParagraphLineHeight-large-loose);
+    --cap-richTextParagraphLineHeight-medium: var(--cap-richTextParagraphLineHeight-medium-loose);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingLineHeight-#{$i}-large: var(--cap-richTextHeadingLineHeight-#{$i}-large-loose);
+      --cap-richTextHeadingLineHeight-#{$i}-medium: var(--cap-richTextHeadingLineHeight-#{$i}-medium-loose);
+    }
+  }
+
+  /**
+   *
+   * Children – p, a
    *
    */
 
@@ -99,6 +136,7 @@ cap-rich-text {
 
   a {
     color: var(--cap-richTextAnchorColor, blue);
+    font-weight: var(--cap-richTextAnchorFontWeight, map.get(cap.$weights, 'strong'));
   }
 
   /**
@@ -134,27 +172,53 @@ cap-rich-text {
     $baseSizeIndex: index(cap.$sizes, $name $size);
 
     &.#{$selector} {
-      $paragraphSizeMedium: map.get($size, 'medium');
-      $paragraphSizeLarge: map.get($size, 'large');
+      $paragraphPropsMedium: map.get($size, 'medium');
+      $paragraphPropsLarge: map.get($size, 'large');
+      $paragraphLineHeightNormalMedium: list.nth($paragraphPropsMedium, 2);
+      $paragraphLineHeightTightMedium: $paragraphLineHeightNormalMedium - 2px;
+      $paragraphLineHeightLooseMedium: $paragraphLineHeightNormalMedium + 2px;
+      $paragraphLineHeightNormalLarge: list.nth($paragraphPropsLarge, 2);
+      $paragraphLineHeightTightLarge: $paragraphLineHeightNormalLarge - 2px;
+      $paragraphLineHeightLooseLarge: $paragraphLineHeightNormalLarge + 2px;
 
-      --cap-richTextParagraphFontSize-large: #{list.nth($paragraphSizeLarge, 1)};
-      --cap-richTextParagraphFontSize-medium: #{list.nth($paragraphSizeMedium, 1)};
-      --cap-richTextParagraphLineHeight-large: #{list.nth($paragraphSizeLarge, 2)};
-      --cap-richTextParagraphLineHeight-medium: #{list.nth($paragraphSizeMedium, 2)};
+      --cap-richTextParagraphFontSize-large: #{list.nth($paragraphPropsLarge, 1)};
+      --cap-richTextParagraphFontSize-medium: #{list.nth($paragraphPropsMedium, 1)};
+      --cap-richTextParagraphLineHeight-large-tight: #{$paragraphLineHeightTightLarge};
+      --cap-richTextParagraphLineHeight-medium-tight: #{$paragraphLineHeightTightMedium};
+      --cap-richTextParagraphLineHeight-large-normal: #{$paragraphLineHeightNormalLarge};
+      --cap-richTextParagraphLineHeight-medium-normal: #{$paragraphLineHeightNormalMedium};
+      --cap-richTextParagraphLineHeight-large-loose: #{$paragraphLineHeightLooseLarge};
+      --cap-richTextParagraphLineHeight-medium-loose: #{$paragraphLineHeightLooseMedium};
 
       @for $i from 0 through 5 {
         $heading: list.nth(cap.$sizes, $baseSizeIndex - $i);
         $headingProps: list.nth($heading, 2);
-        $headingSizeMedium: map.get($headingProps, 'medium');
-        $headingSizeLarge: map.get($headingProps, 'large');
+        $headingPropsMedium: map.get($headingProps, 'medium');
+        $headingPropsLarge: map.get($headingProps, 'large');
+        $headingLineHeightNormalMedium: list.nth($headingPropsMedium, 2);
+        $headingLineHeightTightMedium: $headingLineHeightNormalMedium - 2px;
+        $headingLineHeightLooseMedium: $headingLineHeightNormalMedium + 2px;
+        $headingLineHeightNormalLarge: list.nth($headingPropsLarge, 2);
+        $headingLineHeightTightLarge: $headingLineHeightNormalLarge - 2px;
+        $headingLineHeightLooseLarge: $headingLineHeightNormalLarge + 2px;
 
-        --cap-richTextHeadingFontSize-#{6 - $i}-large: #{list.nth($headingSizeLarge, 1)};
-        --cap-richTextHeadingFontSize-#{6 - $i}-medium: #{list.nth($headingSizeMedium, 1)};
-        --cap-richTextHeadingLineHeight-#{6 - $i}-large: #{list.nth($headingSizeLarge, 2)};
-        --cap-richTextHeadingLineHeight-#{6 - $i}-medium: #{list.nth($headingSizeMedium, 2)};
+        --cap-richTextHeadingFontSize-#{6 - $i}-large: #{list.nth($headingPropsLarge, 1)};
+        --cap-richTextHeadingFontSize-#{6 - $i}-medium: #{list.nth($headingPropsMedium, 1)};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-large-tight: #{$headingLineHeightTightLarge};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-medium-tight: #{$headingLineHeightTightMedium};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-large-normal: #{$headingLineHeightNormalLarge};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-medium-normal: #{$headingLineHeightNormalMedium};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-large-loose: #{$headingLineHeightLooseLarge};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-medium-loose: #{$headingLineHeightLooseMedium};
       }
     }
   }
+
+  /**
+   *
+   * Children – h1...6
+   *
+   */
 
   @for $i from 1 through 6 {
     h#{$i} {

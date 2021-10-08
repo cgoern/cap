@@ -14,8 +14,9 @@
 
 ## CSS Custom Properties
 
-| Name                        | Description    |
-| --------------------------- | -------------- |
-| `--cap-richTextAnchorColor` | Description... |
+| Name                             | Description    |
+| -------------------------------- | -------------- |
+| `--cap-richTextAnchorColor`      | Description... |
+| `--cap-richTextAnchorFontWeight` | Description... |
 
 ---
