@@ -1,0 +1,165 @@
+/**
+ *
+ * Modules
+ *
+ */
+
+@use './../../shared/cap.m' as cap;
+@use './cap-rich-text.m' as self;
+@use 'sass:list';
+@use 'sass:map';
+@use 'sass:string';
+
+/**
+ *
+ * Variables
+ *
+ */
+
+$baseSizes: (
+  '+1': map.get(cap.$sizes, '+1'),
+  '0': map.get(cap.$sizes, '0'),
+  '-1': map.get(cap.$sizes, '-1'),
+);
+
+/**
+ *
+ * Rules
+ *
+ */
+
+cap-rich-text {
+  /** @prop --cap-richTextAnchorColor: Description... */
+
+  display: block;
+  font-family: var(--cap-richTextFontFamily);
+  font-feature-settings: var(--cap-richTextFontFeatureSettings);
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+
+  /**
+   *
+   * Scales
+   *
+   */
+
+  &.adaptive {
+    --cap-richTextParagraphFontSize: var(--cap-richTextParagraphFontSize-medium);
+    --cap-richTextParagraphLineHeight: var(--cap-richTextParagraphLineHeight-medium);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingFontSize-#{$i}: var(--cap-richTextHeadingFontSize-#{$i}-medium);
+      --cap-richTextHeadingLineHeight-#{$i}: var(--cap-richTextHeadingLineHeight-#{$i}-medium);
+    }
+
+    @media (pointer: coarse) {
+      --cap-richTextParagraphFontSize: var(--cap-richTextParagraphFontSize-large);
+      --cap-richTextParagraphLineHeight: var(--cap-richTextParagraphLineHeight-large);
+
+      @for $i from 1 through 6 {
+        --cap-richTextHeadingFontSize-#{$i}: var(--cap-richTextHeadingFontSize-#{$i}-large);
+        --cap-richTextHeadingLineHeight-#{$i}: var(--cap-richTextHeadingLineHeight-#{$i}-large);
+      }
+    }
+  }
+
+  &.medium {
+    --cap-richTextParagraphFontSize: var(--cap-richTextParagraphFontSize-medium);
+    --cap-richTextParagraphLineHeight: var(--cap-richTextParagraphLineHeight-medium);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingFontSize-#{$i}: var(--cap-richTextHeadingFontSize-#{$i}-medium);
+      --cap-richTextHeadingLineHeight-#{$i}: var(--cap-richTextHeadingLineHeight-#{$i}-medium);
+    }
+  }
+
+  &.large {
+    --cap-richTextParagraphFontSize: var(--cap-richTextParagraphFontSize-large);
+    --cap-richTextParagraphLineHeight: var(--cap-richTextParagraphLineHeight-large);
+
+    @for $i from 1 through 6 {
+      --cap-richTextHeadingFontSize-#{$i}: var(--cap-richTextHeadingFontSize-#{$i}-large);
+      --cap-richTextHeadingLineHeight-#{$i}: var(--cap-richTextHeadingLineHeight-#{$i}-large);
+    }
+  }
+
+  /**
+   *
+   * Children
+   *
+   */
+
+  p {
+    font-size: var(--cap-richTextParagraphFontSize);
+    line-height: var(--cap-richTextParagraphLineHeight);
+  }
+
+  a {
+    color: var(--cap-richTextAnchorColor, blue);
+  }
+
+  /**
+   *
+   * Families
+   *
+   */
+
+  @each $name, $family in cap.$families {
+    &.#{$name} {
+      $defaultFamily: string.unquote($family);
+
+      --cap-richTextCapHeight: var(--cap-capHeight-#{$name}, 2000);
+      --cap-richTextFontFamily: var(--cap-fontFamily-#{$name}, #{$defaultFamily});
+      --cap-richTextFontFeatureSettings: var(--cap-fontFeatureSettings-#{$name}, normal);
+      --cap-richTextLetterSpacingFactor: var(--cap-letterSpacingFactor-#{$name}, 1);
+      --cap-richTextUpm: var(--cap-upm-#{$name}, 3000);
+
+      @each $weightKey, $weight in cap.$weights {
+        --cap-richTextFontWeight-#{$weightKey}: var(--cap-fontWeight-#{$weightKey}-#{$name}, #{$weight});
+      }
+    }
+  }
+
+  /**
+   *
+   * Sizes
+   *
+   */
+
+  @each $name, $size in $baseSizes {
+    $selector: if(cap.hasSign($name), '\\#{$name}', '\\3#{$name}');
+    $baseSizeIndex: index(cap.$sizes, $name $size);
+
+    &.#{$selector} {
+      $paragraphSizeMedium: map.get($size, 'medium');
+      $paragraphSizeLarge: map.get($size, 'large');
+
+      --cap-richTextParagraphFontSize-large: #{list.nth($paragraphSizeLarge, 1)};
+      --cap-richTextParagraphFontSize-medium: #{list.nth($paragraphSizeMedium, 1)};
+      --cap-richTextParagraphLineHeight-large: #{list.nth($paragraphSizeLarge, 2)};
+      --cap-richTextParagraphLineHeight-medium: #{list.nth($paragraphSizeMedium, 2)};
+
+      @for $i from 0 through 5 {
+        $heading: list.nth(cap.$sizes, $baseSizeIndex - $i);
+        $headingProps: list.nth($heading, 2);
+        $headingSizeMedium: map.get($headingProps, 'medium');
+        $headingSizeLarge: map.get($headingProps, 'large');
+
+        --cap-richTextHeadingFontSize-#{6 - $i}-large: #{list.nth($headingSizeLarge, 1)};
+        --cap-richTextHeadingFontSize-#{6 - $i}-medium: #{list.nth($headingSizeMedium, 1)};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-large: #{list.nth($headingSizeLarge, 2)};
+        --cap-richTextHeadingLineHeight-#{6 - $i}-medium: #{list.nth($headingSizeMedium, 2)};
+      }
+    }
+  }
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: var(--cap-richTextHeadingFontSize-#{$i});
+      line-height: var(--cap-richTextHeadingLineHeight-#{$i});
+    }
+  }
+}

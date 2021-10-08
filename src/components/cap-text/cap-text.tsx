@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, Element } from '@stencil/core'
-import { FamilyType, HeadingTypes, LineHeightTypes, SizeTypes, ScaleType, WeightType } from './types'
+import { HeadingTypes, SizeTypes } from './types'
+import { FamilyType, LineHeightTypes, ScaleType, WeightType } from './../../shared/types'
 
 @Component({
   tag: 'cap-text',

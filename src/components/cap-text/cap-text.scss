@@ -4,6 +4,7 @@
  *
  */
 
+@use './../../shared/cap.m' as cap;
 @use './cap-text.m' as self;
 @use 'sass:list';
 @use 'sass:map';
@@ -154,8 +155,8 @@
      *
      */
 
-    @each $name, $props in self.$sizes {
-      $selector: if(self.hasSign($name), '\\#{$name}', '\\3#{$name}');
+    @each $name, $props in cap.$sizes {
+      $selector: if(cap.hasSign($name), '\\#{$name}', '\\3#{$name}');
 
       #{&}(.#{$selector}) {
         @each $scale in map.keys($props) {
@@ -178,7 +179,7 @@
      *
      */
 
-    @each $name, $family in self.$families {
+    @each $name, $family in cap.$families {
       #{&}(.#{$name}) {
         $defaultFamily: string.unquote($family);
 
@@ -188,7 +189,7 @@
         --letterSpacingFactor: var(--cap-letterSpacingFactor-#{$name}, 1);
         --upm: var(--cap-upm-#{$name}, 3000);
 
-        @each $weightKey, $weight in self.$weights {
+        @each $weightKey, $weight in cap.$weights {
           --fontWeight-#{$weightKey}: var(--cap-fontWeight-#{$weightKey}-#{$name}, #{$weight});
         }
       }
@@ -200,7 +201,7 @@
      *
      */
 
-    @each $name in map.keys(self.$weights) {
+    @each $name in map.keys(cap.$weights) {
       #{&}(.#{$name}) {
         --fontWeight: var(--fontWeight-#{$name});
       }
