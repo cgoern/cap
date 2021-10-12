@@ -1,0 +1,127 @@
+/*===============================
+=            Modules            =
+===============================*/
+
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:list';
+@use 'sass:string';
+@use './config';
+@use './utilities';
+
+/*==============================
+=            Mixins            =
+==============================*/
+
+@mixin declareSizes($scale) {
+  @each $sizeName, $sizeProps in map.get(config.$sizes, $scale) {
+    $fontSize: list.nth($sizeProps, 1);
+    $lineHeightBase: list.nth($sizeProps, 2);
+
+    --cap-fontSize-#{$sizeName}: #{$fontSize};
+
+    @each $lineHeightName, $lineHeightModifier in config.$lines {
+      $lineHeight: $lineHeightBase + $lineHeightModifier;
+
+      --cap-lineHeight-#{$sizeName}-#{$lineHeightName}: #{$lineHeight};
+
+      @each $fontName, $fontProps in config.$fonts {
+        $upm: map.get($fontProps, 'upm');
+        $capHeight: map.get($fontProps, 'capHeight');
+        $offset: utilities.getOffset($fontSize, $lineHeight, $upm, $capHeight);
+
+        --cap-offset-#{$sizeName}-#{$fontName}-#{$lineHeightName}: #{$offset};
+      }
+    }
+
+    @each $fontName, $fontProps in config.$fonts {
+      $letterSpacingFactor: map.get($fontProps, 'spacing');
+
+      @if $letterSpacingFactor != null {
+        $letterSpacing: utilities.getLetterSpacing(
+          $fontSize,
+          $letterSpacingFactor
+        );
+
+        --cap-letterSpacing-#{$sizeName}-#{$fontName}: #{$letterSpacing};
+      }
+    }
+  }
+}
+
+/*=============================
+=            Rules            =
+=============================*/
+
+/**
+ *
+ * Load custom fonts if font styles are provided
+ *
+ */
+
+@each $fontName, $fontProps in config.$fonts {
+  $fontFamily: map.get($fontProps, 'family');
+  $fontStyles: map.get($fontProps, 'styles');
+  $fontWeights: map.get($fontProps, 'weights');
+  $fontWeightsValues: map.values($fontWeights);
+  $fontWeightMin: math.min($fontWeightsValues...);
+  $fontWeightMax: math.max($fontWeightsValues...);
+
+  @if $fontStyles != null {
+    @each $fontStyle, $SrcUrl in $fontStyles {
+      @font-face {
+        font-display: swap;
+        font-family: string.unquote($fontFamily);
+        font-style: string.unquote($fontStyle);
+        font-weight: $fontWeightMin $fontWeightMax;
+        src: url($SrcUrl) format('woff2');
+      }
+    }
+  }
+}
+
+#{config.$root} {
+  /**
+   *
+   * Declare font related properties
+   *
+   */
+
+  @each $fontName, $fontProps in config.$fonts {
+    $fontFamily: map.get($fontProps, 'family');
+    $fontFamilyFallback: if(
+      map.has-key($fontProps, 'fallback'),
+      map.get($fontProps, 'fallback'),
+      null
+    );
+    $capHeight: map.get($fontProps, 'capHeight');
+    $upm: map.get($fontProps, 'upm');
+    $fontFeatureSettings: map.get($fontProps, 'features');
+
+    --cap-fontFamily-#{$fontName}: #{$fontFamily +
+      if($fontFamilyFallback, ', #{$fontFamilyFallback}', '')};
+    --cap-capHeight-#{$fontName}: #{$capHeight};
+    --cap-fontFeatureSettings-#{$fontName}: #{$fontFeatureSettings};
+    --cap-upm-#{$fontName}: #{$upm};
+
+    @each $fontWeightName, $fontWeight in map.get($fontProps, 'weights') {
+      --cap-fontWeight-#{$fontName}-#{$fontWeightName}: #{$fontWeight};
+    }
+  }
+
+  /**
+   *
+   * Declare size related properties
+   *
+   */
+
+  @each $scale in config.$scales {
+    @if list.index(config.$scales, $scale) > 1 {
+      @media (pointer: coarse) {
+        @include declareSizes($scale);
+      }
+    } @else {
+      @include declareSizes($scale);
+    }
+  }
+}

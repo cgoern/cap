@@ -8,63 +8,32 @@
     "type": "git",
     "url": "https://github.com/cgoern/cap.git"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/custom-elements/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
-  "types": "dist/custom-elements/index.d.ts",
-  "collection": "dist/collection/collection-manifest.json",
-  "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/cap/cap.esm.js",
   "files": [
-    "dist/",
-    "loader/",
-    "www/"
+    "src/"
   ],
-  "dependencies": {
-    "@stencil/core": "^2.8.1"
-  },
-  "devDependencies": {
-    "@stencil/sass": "^1.5.0",
-    "fontkit": "^1.8.1",
-    "prettier": "^2.4.1",
-    "stylelint": "^13.13.1",
-    "stylelint-config-prettier": "^8.0.2",
-    "stylelint-order": "^4.1.0",
-    "stylelint-prettier": "^1.2.0"
-  },
   "scripts": {
-    "build": "stencil build --docs",
-    "start": "stencil build --dev --watch --serve",
-    "stylelint": "stylelint \"**/*.scss\" --fix",
-    "prettier": "prettier \"**/*.{json,ts,tsx,js,md,html,yml}\" --write",
-    "format": "npm run prettier && npm run stylelint",
+    "dev": "mix",
+    "prod": "mix --production",
+    "start": "mix watch",
+    "format": "prettier \"**/*.{scss,json,md,html}\" --write",
     "font-metrics": "node tools/font-metrics.js"
   },
+  "dependencies": {
+    "sass": "^1.42.1"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.27.5",
+    "browser-sync-webpack-plugin": "^2.3.0",
+    "fontkit": "^1.8.1",
+    "laravel-mix": "^6.0.34",
+    "prettier": "^2.4.1",
+    "resolve-url-loader": "^4.0.0",
+    "sass-loader": "^12.1.0"
+  },
   "prettier": {
-    "printWidth": 120,
+    "printWidth": 80,
     "semi": false,
     "singleQuote": true,
     "htmlWhitespaceSensitivity": "strict"
-  },
-  "stylelint": {
-    "extends": [
-      "stylelint-config-prettier"
-    ],
-    "plugins": [
-      "stylelint-prettier",
-      "stylelint-order"
-    ],
-    "rules": {
-      "prettier/prettier": true,
-      "order/order": [
-        "dollar-variables",
-        "custom-properties",
-        "declarations",
-        "rules",
-        "at-rules"
-      ],
-      "order/properties-alphabetical-order": true
-    }
   }
 }

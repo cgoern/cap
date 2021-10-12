@@ -1,0 +1,74 @@
+/*===============================
+=            Modules            =
+===============================*/
+
+@use 'sass:math';
+@use 'sass:map';
+@use './config';
+
+/*=================================
+=            Functions            =
+=================================*/
+
+/**
+ *
+ * Calculates letter spacing for a font size with an associated factor.
+ *
+ * Inpired by the "Dynamic Metrics" section on the Inter typeface family website:
+ * https://rsms.me/inter/dynmetrics/
+ *
+ */
+
+@function getLetterSpacing($fontSize, $spacingFactor) {
+  $a: -0.0223 * $spacingFactor;
+  $b: 0.185;
+  $c: -0.1745;
+  $d: math.div($fontSize, 1px);
+
+  @return ($a + ($b * math.pow(math.$e, $c * $d))) * 1em;
+}
+
+/**
+ *
+ * Calculates the offset which should be removed from the text box.
+ *
+ */
+
+@function getOffset($fontSize, $lineHeight, $upm, $capHeight) {
+  $boxHeight: 2 *
+    math.round(math.div(((math.div($capHeight, $upm)) * $fontSize), 2));
+
+  @return math.div(($lineHeight - $boxHeight), 2);
+}
+
+/**
+ *
+ * Get font size names from a merged map of sizes in all scales.
+ *
+ */
+
+@function getSizeNames() {
+  $sizes: ();
+
+  @each $scale in map.values(config.$sizes) {
+    $sizes: map.merge($sizes, $scale);
+  }
+
+  @return map.keys($sizes);
+}
+
+/**
+ *
+ * Get font weight names from a merged map of weights in all fonts.
+ *
+ */
+
+@function getWeightNames() {
+  $weights: ();
+
+  @each $font in map.values(config.$fonts) {
+    $weights: map.merge($weights, map.get($font, 'weights'));
+  }
+
+  @return map.keys($weights);
+}

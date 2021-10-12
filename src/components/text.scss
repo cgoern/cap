@@ -1,0 +1,161 @@
+/*===============================
+=            Modules            =
+===============================*/
+
+@use 'sass:map';
+@use 'sass:list';
+@use './../library/config';
+@use './../library/utilities';
+
+/*=================================
+=            Variables            =
+=================================*/
+
+$fontNameDefault: list.nth(map.keys(config.$fonts), 1);
+$sizeNames: utilities.getSizeNames();
+$weightNames: utilities.getWeightNames();
+
+/*=============================
+=            Rules            =
+=============================*/
+
+cap-text {
+  display: block;
+  font-family: var(--cap-text-fontFamily, var(--cap-fontFamily-#{$fontNameDefault}));
+  font-size: var(--cap-text-fontSize, var(--cap-fontSize-md));
+  font-weight: var(--cap-text-fontWeight, var(--cap-fontWeight-#{$fontNameDefault}-soft));
+  letter-spacing: var(--cap-text-letterSpacing, var(--cap-letterSpacing-md-#{$fontNameDefault}));
+  line-height: var(--cap-text-lineHeight);
+  font-feature-settings: var(--cap-text-fontFeatureSettings, var(--cap-fontFeatureSettings-#{$fontNameDefault}));
+  font-kerning: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: none;
+  white-space: var(--cap-text-whiteSpace, normal);
+  min-width: var(--cap-text-minWidth, auto);
+
+
+  > * {
+    margin: 0;
+    display: block;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+    overflow: var(--cap-text-overflow, visible);
+    text-overflow: var(--cap-text-textOverflow, clip);
+    white-space: var(--cap-text-whiteSpace, normal);
+    width: var(--cap-text-width, auto);
+  }
+
+  /**
+   *
+   * Trim offset from text box height.
+   *
+   */
+
+  & {
+    padding-bottom: 1px;
+    padding-top: 1px;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    display: block;
+    height: 0;
+  }
+
+  &:before {
+    margin-top: calc((var(--cap-text-offset) + 1px) * -1);
+  }
+
+  &:after {
+    margin-bottom: calc((var(--cap-text-offset) + 1px) * -1);
+  }
+
+  /**
+   *
+   * Declare size related properties
+   *
+   */
+
+  @each $sizeName in $sizeNames {
+    &[size='#{$sizeName}'] {
+      --cap-text-fontSize: var(--cap-fontSize-#{$sizeName}, var(--cap-lineHeight-#{$sizeName}-compact));
+      --cap-text-lineHeight: var(--cap-text-lineHeight-#{$sizeName});
+      --cap-text-offset: var(--cap-text-offset-#{$sizeName}, var(--cap-offset-#{$sizeName}-#{$fontNameDefault}-compact));
+      --cap-text-letterSpacing: var(--cap-text-letterSpacing-#{$sizeName}, var(--cap-letterSpacing-#{$sizeName}-#{$fontNameDefault}));
+    }
+  }
+
+  /**
+   *
+   * Declare line related properties
+   *
+   */
+
+  @each $lineName in map.keys(config.$lines) {
+    &[line='#{$lineName}'] {
+      @each $sizeName in $sizeNames {
+        --cap-text-lineHeight-#{$sizeName}: var(--cap-lineHeight-#{$sizeName}-#{$lineName});
+
+        @each $fontName in map.keys(config.$fonts) {
+          --cap-text-offset-#{$sizeName}-#{$fontName}: var(--cap-offset-#{$sizeName}-#{$fontName}-#{$lineName});
+        }
+      }
+    }
+  }
+
+  /**
+   *
+   * Declare name related properties
+   *
+   */
+
+  @each $fontName, $fontProps in config.$fonts {
+    &[family='#{$fontName}'] {
+      --cap-text-fontFamily: var(--cap-fontFamily-#{$fontName});
+      --cap-text-fontFeatureSettings: var(--cap-fontFeatureSettings-#{$fontName});
+
+      @each $sizeName in $sizeNames {
+        --cap-text-offset-#{$sizeName}: var(--cap-text-offset-#{$sizeName}-#{$fontName});
+        --cap-text-letterSpacing-#{$sizeName}: var(--cap-letterSpacing-#{$sizeName}-#{$fontName});
+      }
+
+      @each $weightName in $weightNames {
+        --cap-text-fontWeight-#{$weightName}: var(--cap-fontWeight-#{$fontName}-#{$weightName});
+      }
+    }
+  }
+
+  /**
+   *
+   * Declare weight related properties
+   *
+   */
+
+  @each $weightName in $weightNames {
+    &[weight='#{$weightName}'] {
+      --cap-text-fontWeight: var(--cap-text-fontWeight-#{$weightName});
+    }
+  }
+
+  /**
+   *
+   * Miscellaneous
+   *
+   */
+
+  &[nowrap] {
+    --cap-text-whiteSpace: nowrap;
+  }
+
+  &[ellipsis] {
+    --cap-text-minWidth: 0;
+    --cap-text-overflow: hidden;
+    --cap-text-textOverflow: ellipsis;
+    --cap-text-whiteSpace: nowrap;
+    --cap-text-width: 100%;
+  }
+}
