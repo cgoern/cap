@@ -26,7 +26,7 @@ export class CapText {
   @Prop() heading: HeadingTypes
 
   /** Description... */
-  @Prop() lineHeight: LineHeightTypes = 'normal'
+  @Prop() lineHeight: LineHeightTypes = 'compact'
 
   /** Description... */
   @Prop() size: SizeTypes = '0'

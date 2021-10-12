@@ -139,9 +139,9 @@
       --lineHeight-medium: var(--lineHeight-medium-tight);
     }
 
-    #{&}(.normal) {
-      --lineHeight-large: var(--lineHeight-large-normal);
-      --lineHeight-medium: var(--lineHeight-medium-normal);
+    #{&}(.compact) {
+      --lineHeight-large: var(--lineHeight-large-compact);
+      --lineHeight-medium: var(--lineHeight-medium-compact);
     }
 
     #{&}(.loose) {
@@ -161,13 +161,13 @@
       #{&}(.#{$selector}) {
         @each $scale in map.keys($props) {
           $fontSize: list.nth(map.get($props, $scale), 1);
-          $lineHeightNormal: list.nth(map.get($props, $scale), 2);
-          $lineHeightTight: $lineHeightNormal - 2px;
-          $lineHeightLoose: $lineHeightNormal + 2px;
+          $lineHeightCompact: list.nth(map.get($props, $scale), 2);
+          $lineHeightTight: $lineHeightCompact - 2px;
+          $lineHeightLoose: $lineHeightCompact + 2px;
 
           --fontSize-#{$scale}: #{$fontSize};
           --lineHeight-#{$scale}-loose: #{$lineHeightLoose};
-          --lineHeight-#{$scale}-normal: #{$lineHeightNormal};
+          --lineHeight-#{$scale}-compact: #{$lineHeightCompact};
           --lineHeight-#{$scale}-tight: #{$lineHeightTight};
         }
       }

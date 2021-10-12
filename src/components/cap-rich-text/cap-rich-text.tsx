@@ -5,7 +5,7 @@ import { FamilyType, LineHeightTypes, ScaleType, WeightType } from './../../shar
 @Component({
   tag: 'cap-rich-text',
   styleUrl: 'cap-rich-text.scss',
-  shadow: false,
+  shadow: true,
 })
 export class CapRichText {
   @Element() element: HTMLCapRichTextElement
@@ -20,7 +20,7 @@ export class CapRichText {
   @Prop() family: FamilyType = 'sans'
 
   /** Description... */
-  @Prop() lineHeight: LineHeightTypes = 'normal'
+  @Prop() lineHeight: LineHeightTypes = 'compact'
 
   /** Description... */
   @Prop() size: SizeTypes = '0'
@@ -42,7 +42,9 @@ export class CapRichText {
 
     return (
       <Host class={hostClass.join(' ')}>
-        <slot></slot>
+        <div part="text">
+          <slot></slot>
+        </div>
       </Host>
     )
   }
