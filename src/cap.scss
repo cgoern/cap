@@ -17,3 +17,6 @@
  */
 
 @use './library/setup';
+@use './library/lab';
+
+@include lab.setSizes(15px);

@@ -1,0 +1,20 @@
+@use 'sass:math';
+@use 'sass:list';
+
+@mixin setSizes($baseSize, $scaleFactor: 1.2) {
+  $sizes: ();
+
+  @for $i from 2 to -1 {
+    $size: math.round(math.div($baseSize, math.pow($scaleFactor, $i)));
+    $height: 2 * math.round(math.div($size * 1.4, 2));
+    $sizes: list.append($sizes, ($size, $height));
+  }
+
+  @for $i from 1 to 8 {
+    $size: math.round($baseSize * math.pow($scaleFactor, $i));
+    $height: 2 * math.round(math.div($size * 1.4, 2));
+    $sizes: list.append($sizes, ($size, $height));
+  }
+
+  @debug $sizes;
+}
