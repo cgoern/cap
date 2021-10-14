@@ -6,6 +6,6 @@ mix
   .disableNotifications()
   .browserSync({
     server: true,
-    files: ['index.html', 'dist/cap.css'],
+    files: ['index.html', 'dist/style.css'],
   })
   .sass('style.scss', 'style.css')

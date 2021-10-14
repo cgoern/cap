@@ -6,45 +6,86 @@
 @use 'sass:math';
 @use 'sass:list';
 @use 'sass:string';
+@use 'sass:meta';
 @use './config';
-@use './utilities';
+@use './utils';
+
+/*=================================
+=            Variables            =
+=================================*/
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$scales: ();
+
+/**
+ *
+ * Description...
+ *
+ */
+
+@each $scaleBase in config.$scaleBases {
+  $scaleIndex: list.index(config.$scaleBases, $scaleBase);
+  $sizes: ();
+
+  @for $sizeIndex from (config.$scalesDown * -1) to (config.$scalesUp + 1) {
+    $sizeName: list.nth(
+      config.$sizeNames,
+      config.$sizeNamesBaseIndex + $sizeIndex
+    );
+    $fontSize: utils.getFontSize($scaleBase, config.$scaleFactor, $sizeIndex);
+    $lineHeight: utils.getLineHeight($fontSize);
+    $sizes: map.merge(
+      $sizes,
+      (
+        '#{$sizeName}': (
+          'fontSize': $fontSize,
+          'lineHeight': $lineHeight,
+        ),
+      )
+    );
+  }
+
+  $scales: list.append($scales, $sizes);
+}
 
 /*==============================
 =            Mixins            =
 ==============================*/
 
+/**
+ *
+ * Description...
+ *
+ */
+
 @mixin declareSizes($scale) {
-  @each $sizeName, $sizeProps in map.get(config.$sizes, $scale) {
-    $fontSize: list.nth($sizeProps, 1);
-    $lineHeightBase: list.nth($sizeProps, 2);
+  @each $sizeName, $sizeProps in $scale {
+    $fontSize: map.get($sizeProps, 'fontSize');
+    $lineHeight: map.get($sizeProps, 'lineHeight');
 
     --cap-fontSize-#{$sizeName}: #{$fontSize};
-
-    @each $lineHeightName, $lineHeightModifier in config.$lines {
-      $lineHeight: $lineHeightBase + $lineHeightModifier;
-
-      --cap-lineHeight-#{$sizeName}-#{$lineHeightName}: #{$lineHeight};
-
-      @each $fontName, $fontProps in config.$fonts {
-        $upm: map.get($fontProps, 'upm');
-        $capHeight: map.get($fontProps, 'capHeight');
-        $offset: utilities.getOffset($fontSize, $lineHeight, $upm, $capHeight);
-
-        --cap-offset-#{$sizeName}-#{$fontName}-#{$lineHeightName}: #{$offset};
-      }
-    }
+    --cap-lineHeight-#{$sizeName}: #{$lineHeight};
 
     @each $fontName, $fontProps in config.$fonts {
+      $upm: map.get($fontProps, 'upm');
+      $capHeight: map.get($fontProps, 'capHeight');
+      $offset: utils.getOffset($fontSize, $lineHeight, $upm, $capHeight);
       $letterSpacingFactor: map.get($fontProps, 'spacing');
+      $letterSpacing: if(
+        $letterSpacingFactor != null,
+        utils.getLetterSpacing($fontSize, $letterSpacingFactor),
+        normal
+      );
 
-      @if $letterSpacingFactor != null {
-        $letterSpacing: utilities.getLetterSpacing(
-          $fontSize,
-          $letterSpacingFactor
-        );
+      --cap-offset-#{$sizeName}-#{$fontName}: #{$offset};
 
-        --cap-letterSpacing-#{$sizeName}-#{$fontName}: #{$letterSpacing};
-      }
+      /* FIXME: single 'normal' output for $letterSpacingFactor == null */
+      --cap-letterSpacing-#{$sizeName}-#{$fontName}: #{$letterSpacing};
     }
   }
 }
@@ -55,7 +96,7 @@
 
 /**
  *
- * Load custom fonts if font styles are provided
+ * Description...
  *
  */
 
@@ -83,7 +124,7 @@
 #{config.$root} {
   /**
    *
-   * Declare font related properties
+   * Description...
    *
    */
 
@@ -105,18 +146,20 @@
     --cap-upm-#{$fontName}: #{$upm};
 
     @each $fontWeightName, $fontWeight in map.get($fontProps, 'weights') {
-      --cap-fontWeight-#{$fontName}-#{$fontWeightName}: #{$fontWeight};
+      --cap-fontWeight-#{$fontWeightName}-#{$fontName}: #{$fontWeight};
     }
   }
 
   /**
    *
-   * Declare size related properties
+   * Description...
    *
    */
 
-  @each $scale in config.$scales {
-    @if list.index(config.$scales, $scale) > 1 {
+  @each $scale in $scales {
+    $index: list.index($scales, $scale);
+
+    @if $index > 1 {
       @media (pointer: coarse) {
         @include declareSizes($scale);
       }

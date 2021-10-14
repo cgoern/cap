@@ -1,12 +1,40 @@
-/*=================================
-=            Variables            =
-=================================*/
+/*===============================
+=            Modules            =
+===============================*/
+
+@use 'sass:list';
+@use 'sass:map';
+
+/*================================================
+=            Variables - configurable            =
+================================================*/
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$debug: false !default;
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$root: ':root' !default;
+
+/**
+ *
+ * Description...
+ *
+ */
 
 $fonts: (
   'default': (
     'family': 'sans-serif',
     'weights': (
-      'light': 300,
       'soft': 400,
       'strong': 500,
       'heavy': 600,
@@ -19,52 +47,101 @@ $fonts: (
   ),
 ) !default;
 
-$scales: ('medium', 'large') !default;
+/**
+ *
+ * Description...
+ *
+ */
 
-/* prettier-ignore */
-$sizes: (
-  'small': (
-    '6xl': (47px, 54px),
-    '5xl': (39px, 46px),
-    '4xl': (32px, 40px),
-    '3xl': (27px, 34px),
-    '2xl': (22px, 30px),
-    'xl': (19px, 26px),
-    'lg': (16px, 24px),
-    'md': (13px, 20px),
-    'sm': (11px, 18px),
-    'xs': (9px, 16px),
-  ),
-  'medium': (
-    '6xl': (54px, 62px),
-    '5xl': (45px, 52px),
-    '4xl': (37px, 44px),
-    '3xl': (31px, 38px),
-    '2xl': (26px, 34px),
-    'xl': (22px, 30px),
-    'lg': (18px, 26px),
-    'md': (15px, 22px),
-    'sm': (12px, 18px),
-    'xs': (10px, 16px),
-  ),
-  'large': (
-    '6xl': (61px, 68px),
-    '5xl': (51px, 58px),
-    '4xl': (42px, 48px),
-    '3xl': (35px, 42px),
-    '2xl': (29px, 36px),
-    'xl': (24px, 32px),
-    'lg': (20px, 28px),
-    'md': (17px, 24px),
-    'sm': (14px, 20px),
-    'xs': (12px, 18px),
-  ),
-) !default;
+$fontDefault: 'sans' !default;
 
-$lines: (
+/**
+ *
+ * Description...
+ *
+ */
+
+$fontWeightDefault: 'soft' !default;
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$scalesUp: 8 !default;
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$scalesDown: 2 !default;
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$scaleFactor: 1.2 !default;
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$scaleBases: (15px) !default;
+
+/*====================================================
+=            Variables - non configurable            =
+====================================================*/
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$sizeNames: (
+  '8xs',
+  '7xs',
+  '6xs',
+  '5xs',
+  '4xs',
+  '3xs',
+  '2xs',
+  'xs',
+  'sm',
+  'md',
+  'lg',
+  'xl',
+  '2xl',
+  '3xl',
+  '4xl',
+  '5xl',
+  '6xl',
+  '7xl',
+  '8xl'
+);
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$sizeNamesBaseIndex: list.index($sizeNames, 'md');
+
+/**
+ *
+ * Description...
+ *
+ */
+
+$lineHeightModifiers: (
   'tight': -2px,
-  'compact': -2px,
   'loose': 2px,
-) !default;
-
-$root: ':root' !default;
+);

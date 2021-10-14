@@ -28,7 +28,7 @@
     "laravel-mix": "^6.0.34",
     "prettier": "^2.4.1",
     "resolve-url-loader": "^4.0.0",
-    "sass-loader": "^12.1.0"
+    "sass-loader": "^12.2.0"
   },
   "prettier": {
     "printWidth": 80,

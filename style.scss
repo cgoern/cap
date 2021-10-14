@@ -1,11 +1,16 @@
 @use './src/cap' with
   (
+    $debug: false,
+    $scaleBases: (
+      15px,
+      17px,
+    ),
+    $fontWeightDefault: 'strong',
     $fonts: (
       'sans': (
         'family': '"Inter"',
         'fallback': 'sans-serif',
         'weights': (
-          'light': 300,
           'soft': 400,
           'strong': 500,
           'heavy': 600,
@@ -23,7 +28,6 @@
         'family': '"Merriweather"',
         'fallback': 'serif',
         'weights': (
-          'light': 300,
           'soft': 400,
           'strong': 500,
           'heavy': 900,

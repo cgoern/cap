@@ -4,7 +4,7 @@
 
 @use 'sass:math';
 @use 'sass:map';
-@use './config';
+@use 'sass:meta';
 
 /*=================================
 =            Functions            =
@@ -12,25 +12,56 @@
 
 /**
  *
- * Calculates letter spacing for a font size with an associated factor.
+ * Description...
  *
  * Inpired by the "Dynamic Metrics" section on the Inter typeface family website:
  * https://rsms.me/inter/dynmetrics/
  *
  */
 
-@function getLetterSpacing($fontSize, $spacingFactor) {
-  $a: -0.0223 * $spacingFactor;
-  $b: 0.185;
-  $c: -0.1745;
+@function getRatio($fontSize, $a, $b, $c) {
   $d: math.div($fontSize, 1px);
 
-  @return ($a + ($b * math.pow(math.$e, $c * $d))) * 1em;
+  @return ($a + ($b * math.pow(math.$e, $c * $d)));
 }
 
 /**
  *
- * Calculates the offset which should be removed from the text box.
+ * Description...
+ *
+ */
+
+@function getLetterSpacing($fontSize, $spacingFactor) {
+  $ratio: getRatio($fontSize, -0.0223 * $spacingFactor, 0.185, -0.1745);
+
+  @return $ratio * 1em;
+}
+
+/**
+ *
+ * Description...
+ *
+ */
+
+@function getLineHeight($fontSize) {
+  $ratio: getRatio($fontSize, 1.2, 1.8, -0.14);
+
+  @return math.round(math.div($fontSize * $ratio, 2)) * 2;
+}
+
+/**
+ *
+ * Description...
+ *
+ */
+
+@function getFontSize($fontSizeBase, $scaleFactor, $scaleIndex) {
+  @return math.round($fontSizeBase * math.pow($scaleFactor, $scaleIndex));
+}
+
+/**
+ *
+ * Description...
  *
  */
 
@@ -43,14 +74,14 @@
 
 /**
  *
- * Get font size names from a merged map of sizes in all scales.
+ * Description...
  *
  */
 
-@function getSizeNames() {
+@function getSizeNames($scales) {
   $sizes: ();
 
-  @each $scale in map.values(config.$sizes) {
+  @each $scale in $scales {
     $sizes: map.merge($sizes, $scale);
   }
 
@@ -59,14 +90,14 @@
 
 /**
  *
- * Get font weight names from a merged map of weights in all fonts.
+ * Description...
  *
  */
 
-@function getWeightNames() {
+@function getWeightNames($fonts) {
   $weights: ();
 
-  @each $font in map.values(config.$fonts) {
+  @each $font in map.values($fonts) {
     $weights: map.merge($weights, map.get($font, 'weights'));
   }
 

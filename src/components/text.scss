@@ -5,36 +5,49 @@
 @use 'sass:map';
 @use 'sass:list';
 @use './../library/config';
-@use './../library/utilities';
+@use './../library/utils';
+@use './../library/setup';
 
 /*=================================
 =            Variables            =
 =================================*/
 
-$fontNameDefault: list.nth(map.keys(config.$fonts), 1);
-$sizeNames: utilities.getSizeNames();
-$weightNames: utilities.getWeightNames();
+/**
+ *
+ * Description...
+ *
+ */
+
+$_sizeNames: utils.getSizeNames(setup.$scales);
+$_weightNames: utils.getWeightNames(config.$fonts);
 
 /*=============================
 =            Rules            =
 =============================*/
 
 cap-text {
+  --cap-text-lineHeightModifier: 0px;
+
   display: block;
-  font-family: var(--cap-text-fontFamily, var(--cap-fontFamily-#{$fontNameDefault}));
-  font-size: var(--cap-text-fontSize, var(--cap-fontSize-md));
-  font-weight: var(--cap-text-fontWeight, var(--cap-fontWeight-#{$fontNameDefault}-soft));
-  letter-spacing: var(--cap-text-letterSpacing, var(--cap-letterSpacing-md-#{$fontNameDefault}));
-  line-height: var(--cap-text-lineHeight);
-  font-feature-settings: var(--cap-text-fontFeatureSettings, var(--cap-fontFeatureSettings-#{$fontNameDefault}));
+  font-family: var(
+    --cap-text-fontFamily,
+    var(--cap-fontFamily-#{config.$fontDefault})
+  );
+  font-feature-settings: var(
+    --cap-text-fontFeatureSettings,
+    var(--cap-fontFeatureSettings-#{config.$fontDefault})
+  );
   font-kerning: normal;
+  font-weight: var(--cap-text-fontWeight);
+  font-size: var(--cap-text-fontSize);
+  line-height: calc(
+    var(--cap-text-lineHeight) + var(--cap-text-lineHeightModifier)
+  );
   -webkit-font-smoothing: antialiased;
+  letter-spacing: var(--cap-text-letterSpacing);
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   -webkit-text-size-adjust: none;
-  white-space: var(--cap-text-whiteSpace, normal);
-  min-width: var(--cap-text-minWidth, auto);
-
 
   > * {
     margin: 0;
@@ -42,15 +55,11 @@ cap-text {
     font-size: inherit;
     font-weight: inherit;
     line-height: inherit;
-    overflow: var(--cap-text-overflow, visible);
-    text-overflow: var(--cap-text-textOverflow, clip);
-    white-space: var(--cap-text-whiteSpace, normal);
-    width: var(--cap-text-width, auto);
   }
 
   /**
    *
-   * Trim offset from text box height.
+   * Description...
    *
    */
 
@@ -67,95 +76,98 @@ cap-text {
   }
 
   &:before {
-    margin-top: calc((var(--cap-text-offset) + 1px) * -1);
+    margin-top: calc(
+      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) *
+        -1
+    );
   }
 
   &:after {
-    margin-bottom: calc((var(--cap-text-offset) + 1px) * -1);
+    margin-bottom: calc(
+      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) *
+        -1
+    );
   }
 
   /**
    *
-   * Declare size related properties
-   *
-   */
-
-  @each $sizeName in $sizeNames {
-    &[size='#{$sizeName}'] {
-      --cap-text-fontSize: var(--cap-fontSize-#{$sizeName}, var(--cap-lineHeight-#{$sizeName}-compact));
-      --cap-text-lineHeight: var(--cap-text-lineHeight-#{$sizeName});
-      --cap-text-offset: var(--cap-text-offset-#{$sizeName}, var(--cap-offset-#{$sizeName}-#{$fontNameDefault}-compact));
-      --cap-text-letterSpacing: var(--cap-text-letterSpacing-#{$sizeName}, var(--cap-letterSpacing-#{$sizeName}-#{$fontNameDefault}));
-    }
-  }
-
-  /**
-   *
-   * Declare line related properties
-   *
-   */
-
-  @each $lineName in map.keys(config.$lines) {
-    &[line='#{$lineName}'] {
-      @each $sizeName in $sizeNames {
-        --cap-text-lineHeight-#{$sizeName}: var(--cap-lineHeight-#{$sizeName}-#{$lineName});
-
-        @each $fontName in map.keys(config.$fonts) {
-          --cap-text-offset-#{$sizeName}-#{$fontName}: var(--cap-offset-#{$sizeName}-#{$fontName}-#{$lineName});
-        }
-      }
-    }
-  }
-
-  /**
-   *
-   * Declare name related properties
+   * Description...
    *
    */
 
   @each $fontName, $fontProps in config.$fonts {
     &[family='#{$fontName}'] {
       --cap-text-fontFamily: var(--cap-fontFamily-#{$fontName});
-      --cap-text-fontFeatureSettings: var(--cap-fontFeatureSettings-#{$fontName});
+      --cap-text-fontFeatureSettings: var(
+        --cap-fontFeatureSettings-#{$fontName}
+      );
 
-      @each $sizeName in $sizeNames {
-        --cap-text-offset-#{$sizeName}: var(--cap-text-offset-#{$sizeName}-#{$fontName});
-        --cap-text-letterSpacing-#{$sizeName}: var(--cap-letterSpacing-#{$sizeName}-#{$fontName});
+      @each $sizeName in $_sizeNames {
+        --cap-text-offset-#{$sizeName}: var(
+          --cap-offset-#{$sizeName}-#{$fontName}
+        );
+        --cap-text-letterSpacing-#{$sizeName}: var(
+          --cap-letterSpacing-#{$sizeName}-#{$fontName}
+        );
       }
 
-      @each $weightName in $weightNames {
-        --cap-text-fontWeight-#{$weightName}: var(--cap-fontWeight-#{$fontName}-#{$weightName});
+      @each $weightName in $_weightNames {
+        --cap-text-fontWeight-#{$weightName}: var(
+          --cap-fontWeight-#{$weightName}-#{$fontName}
+        );
       }
     }
   }
 
   /**
    *
-   * Declare weight related properties
+   * Description...
    *
    */
 
-  @each $weightName in $weightNames {
+  @each $sizeName in $_sizeNames {
+    &[size='#{$sizeName}'] {
+      --cap-text-fontSize: var(--cap-fontSize-#{$sizeName});
+      --cap-text-lineHeight: var(--cap-lineHeight-#{$sizeName});
+      --cap-text-offset: var(
+        --cap-text-offset-#{$sizeName},
+        var(--cap-offset-#{$sizeName}-#{config.$fontDefault})
+      );
+      --cap-text-letterSpacing: var(
+        --cap-text-letterSpacing-#{$sizeName},
+        var(--cap-letterSpacing-#{$sizeName}-#{config.$fontDefault})
+      );
+    }
+  }
+
+  /**
+   *
+   * Description...
+   *
+   */
+
+  @each $weightName in $_weightNames {
     &[weight='#{$weightName}'] {
-      --cap-text-fontWeight: var(--cap-text-fontWeight-#{$weightName});
+      --cap-text-fontWeight: var(
+        --cap-text-fontWeight-#{$weightName},
+        var(
+          --cap-fontWeight-#{config.$fontWeightDefault}-#{config.$fontDefault}
+        )
+      );
     }
   }
 
   /**
    *
-   * Miscellaneous
+   * Description...
    *
    */
 
-  &[nowrap] {
-    --cap-text-whiteSpace: nowrap;
-  }
-
-  &[ellipsis] {
-    --cap-text-minWidth: 0;
-    --cap-text-overflow: hidden;
-    --cap-text-textOverflow: ellipsis;
-    --cap-text-whiteSpace: nowrap;
-    --cap-text-width: 100%;
+  @each $lineHeightModifierName,
+    $lineHeightModifier in config.$lineHeightModifiers
+  {
+    &[line='#{$lineHeightModifierName}'] {
+      --cap-text-lineHeightModifier: #{$lineHeightModifier};
+    }
   }
 }
