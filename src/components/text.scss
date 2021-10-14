@@ -97,10 +97,6 @@ cap-text {
         --cap-text-offset-#{$sizeName}: var(--cap-offset-#{$sizeName}-#{$fontName});
         --cap-text-letterSpacing-#{$sizeName}: var(--cap-letterSpacing-#{$sizeName}-#{$fontName});
       }
-
-      @each $weightName in $_weightNames {
-        --cap-text-fontWeight-#{$weightName}: var(--cap-fontWeight-#{$weightName}-#{$fontName});
-      }
     }
   }
 
@@ -137,6 +133,10 @@ cap-text {
         --cap-text-fontWeight-#{$weightName},
         var(--cap-fontWeight-#{config.$defaultWeight}-#{config.$defaultFont})
       );
+
+      @each $fontName, $fontProps in config.$fonts {
+        --cap-text-fontWeight-#{$weightName}: var(--cap-fontWeight-#{$weightName}-#{$fontName});
+      }
     }
   }
 
