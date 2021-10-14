@@ -66,8 +66,7 @@
  */
 
 @function getOffset($fontSize, $lineHeight, $upm, $capHeight) {
-  $boxHeight: 2 *
-    math.round(math.div(((math.div($capHeight, $upm)) * $fontSize), 2));
+  $boxHeight: 2 * math.round(math.div(((math.div($capHeight, $upm)) * $fontSize), 2));
 
   @return math.div(($lineHeight - $boxHeight), 2);
 }

@@ -33,10 +33,7 @@ $scales: ();
   $sizes: ();
 
   @for $sizeIndex from (config.$scalesDown * -1) to (config.$scalesUp + 1) {
-    $sizeName: list.nth(
-      config.$sizeNames,
-      config.$sizeNamesBaseIndex + $sizeIndex
-    );
+    $sizeName: list.nth(config.$sizeNames, config.$sizeNamesBaseIndex + $sizeIndex);
     $fontSize: utils.getFontSize($scaleBase, config.$scaleFactor, $sizeIndex);
     $lineHeight: utils.getLineHeight($fontSize);
     $sizes: map.merge(

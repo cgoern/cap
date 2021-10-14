@@ -8,4 +8,8 @@ mix
     server: true,
     files: ['index.html', 'dist/style.css'],
   })
-  .sass('style.scss', 'style.css')
+  .sass('style.scss', 'style.css', {
+    sassOptions: {
+      outputStyle: 'compressed',
+    },
+  })

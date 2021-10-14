@@ -15,11 +15,11 @@
     "dev": "mix",
     "prod": "mix --production",
     "start": "mix watch",
-    "format": "prettier \"**/*.{scss,json,md,html}\" --write",
+    "format": "prettier \"**/*.{scss,js,json,md,html}\" --write",
     "font-metrics": "node tools/font-metrics.js"
   },
   "dependencies": {
-    "sass": "^1.42.1"
+    "sass": "^1.43.2"
   },
   "devDependencies": {
     "browser-sync": "^2.27.5",
@@ -31,7 +31,7 @@
     "sass-loader": "^12.2.0"
   },
   "prettier": {
-    "printWidth": 80,
+    "printWidth": 100,
     "semi": false,
     "singleQuote": true,
     "htmlWhitespaceSensitivity": "strict"

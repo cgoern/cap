@@ -29,20 +29,15 @@ cap-text {
   --cap-text-lineHeightModifier: 0px;
 
   display: block;
-  font-family: var(
-    --cap-text-fontFamily,
-    var(--cap-fontFamily-#{config.$fontDefault})
-  );
+  font-family: var(--cap-text-fontFamily, var(--cap-fontFamily-#{config.$defaultFont}));
   font-feature-settings: var(
     --cap-text-fontFeatureSettings,
-    var(--cap-fontFeatureSettings-#{config.$fontDefault})
+    var(--cap-fontFeatureSettings-#{config.$defaultFont})
   );
   font-kerning: normal;
   font-weight: var(--cap-text-fontWeight);
   font-size: var(--cap-text-fontSize);
-  line-height: calc(
-    var(--cap-text-lineHeight) + var(--cap-text-lineHeightModifier)
-  );
+  line-height: calc(var(--cap-text-lineHeight) + var(--cap-text-lineHeightModifier));
   -webkit-font-smoothing: antialiased;
   letter-spacing: var(--cap-text-letterSpacing);
   -moz-osx-font-smoothing: grayscale;
@@ -77,15 +72,13 @@ cap-text {
 
   &:before {
     margin-top: calc(
-      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) *
-        -1
+      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) * -1
     );
   }
 
   &:after {
     margin-bottom: calc(
-      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) *
-        -1
+      (var(--cap-text-offset) + (var(--cap-text-lineHeightModifier) / 2) + 1px) * -1
     );
   }
 
@@ -98,23 +91,15 @@ cap-text {
   @each $fontName, $fontProps in config.$fonts {
     &[family='#{$fontName}'] {
       --cap-text-fontFamily: var(--cap-fontFamily-#{$fontName});
-      --cap-text-fontFeatureSettings: var(
-        --cap-fontFeatureSettings-#{$fontName}
-      );
+      --cap-text-fontFeatureSettings: var(--cap-fontFeatureSettings-#{$fontName});
 
       @each $sizeName in $_sizeNames {
-        --cap-text-offset-#{$sizeName}: var(
-          --cap-offset-#{$sizeName}-#{$fontName}
-        );
-        --cap-text-letterSpacing-#{$sizeName}: var(
-          --cap-letterSpacing-#{$sizeName}-#{$fontName}
-        );
+        --cap-text-offset-#{$sizeName}: var(--cap-offset-#{$sizeName}-#{$fontName});
+        --cap-text-letterSpacing-#{$sizeName}: var(--cap-letterSpacing-#{$sizeName}-#{$fontName});
       }
 
       @each $weightName in $_weightNames {
-        --cap-text-fontWeight-#{$weightName}: var(
-          --cap-fontWeight-#{$weightName}-#{$fontName}
-        );
+        --cap-text-fontWeight-#{$weightName}: var(--cap-fontWeight-#{$weightName}-#{$fontName});
       }
     }
   }
@@ -131,11 +116,11 @@ cap-text {
       --cap-text-lineHeight: var(--cap-lineHeight-#{$sizeName});
       --cap-text-offset: var(
         --cap-text-offset-#{$sizeName},
-        var(--cap-offset-#{$sizeName}-#{config.$fontDefault})
+        var(--cap-offset-#{$sizeName}-#{config.$defaultFont})
       );
       --cap-text-letterSpacing: var(
         --cap-text-letterSpacing-#{$sizeName},
-        var(--cap-letterSpacing-#{$sizeName}-#{config.$fontDefault})
+        var(--cap-letterSpacing-#{$sizeName}-#{config.$defaultFont})
       );
     }
   }
@@ -150,9 +135,7 @@ cap-text {
     &[weight='#{$weightName}'] {
       --cap-text-fontWeight: var(
         --cap-text-fontWeight-#{$weightName},
-        var(
-          --cap-fontWeight-#{config.$fontWeightDefault}-#{config.$fontDefault}
-        )
+        var(--cap-fontWeight-#{config.$defaultWeight}-#{config.$defaultFont})
       );
     }
   }
@@ -163,9 +146,7 @@ cap-text {
    *
    */
 
-  @each $lineHeightModifierName,
-    $lineHeightModifier in config.$lineHeightModifiers
-  {
+  @each $lineHeightModifierName, $lineHeightModifier in config.$lineHeightModifiers {
     &[line='#{$lineHeightModifierName}'] {
       --cap-text-lineHeightModifier: #{$lineHeightModifier};
     }
